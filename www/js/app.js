@@ -114,7 +114,8 @@ new Vue({
               pageAfterIn: function openStatuto (e, page) {
                 Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetLoStatuto', {}, function (data) {
                   $$('#statuto-loader').remove();
-                  $$('#statuto-container').html('<a href="http://'+data+'" class="link external" target="_blank"><img src="img/file-pdf-box.png" /></a><p>Visualizza lo statuto</p>');
+                  // $$('#statuto-container').html('<a href="http://'+data+'" class="link external" target="_blank"><img src="img/file-pdf-box.png" /></a><p>Visualizza lo statuto</p>');
+                  $$('#statuto-container').html('<img src="img/file-pdf-box.png" /><p>Visualizza lo statuto</p>');
                 });
               },
             }
@@ -244,51 +245,51 @@ new Vue({
               },
             }
           },
-          {
-            path: '/agenda/',
-            component: 'page-agenda',
-            on: {
-              pageAfterIn: function openAgenda (e, page) {
-                var monthNames = getMonths(0,2);
-                console.log(monthNames);
-                var app = new Framework7({ /*...*/ });
-                var calendarInline = app.calendar.create({
-                  containerEl: '#demo-calendar-inline-container',
-                  routableModals: false,
-                  value: [new Date()],
-                  weekHeader: true,
-                  dayNamesShort	: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
-                  renderToolbar: function () {
-                    return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
-                      '<div class="toolbar-inner">' +
-                        '<div class="left">' +
-                          '<a href="#" class="link icon-only"><i class="icon icon-back ' + (app.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
-                        '</div>' +
-                        '<div class="center"></div>' +
-                        '<div class="right">' +
-                          '<a href="#" class="link icon-only"><i class="icon icon-forward ' + (app.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
-                        '</div>' +
-                      '</div>' +
-                    '</div>';
-                  },
-                  on: {
-                    init: function (c) {
-                      $$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
-                      $$('.calendar-custom-toolbar .left .link').on('click', function () {
-                        calendarInline.prevMonth();
-                      });
-                      $$('.calendar-custom-toolbar .right .link').on('click', function () {
-                        calendarInline.nextMonth();
-                      });
-                    },
-                    monthYearChangeStart: function (c) {
-                      $$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
-                    }
-                  }
-                });
-              }
-            },
-          },
+          // {
+          //   path: '/agenda/',
+          //   component: 'page-agenda',
+          //   on: {
+          //     pageAfterIn: function openAgenda (e, page) {
+          //       var monthNames = getMonths(0,2);
+          //       console.log(monthNames);
+          //       var app = new Framework7({ /*...*/ });
+          //       var calendarInline = app.calendar.create({
+          //         containerEl: '#demo-calendar-inline-container',
+          //         routableModals: false,
+          //         value: [new Date()],
+          //         weekHeader: true,
+          //         dayNamesShort	: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
+          //         renderToolbar: function () {
+          //           return '<div class="toolbar calendar-custom-toolbar no-shadow">' +
+          //             '<div class="toolbar-inner">' +
+          //               '<div class="left">' +
+          //                 '<a href="#" class="link icon-only"><i class="icon icon-back ' + (app.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+          //               '</div>' +
+          //               '<div class="center"></div>' +
+          //               '<div class="right">' +
+          //                 '<a href="#" class="link icon-only"><i class="icon icon-forward ' + (app.theme === 'md' ? 'color-black' : '') + '"></i></a>' +
+          //               '</div>' +
+          //             '</div>' +
+          //           '</div>';
+          //         },
+          //         on: {
+          //           init: function (c) {
+          //             $$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
+          //             $$('.calendar-custom-toolbar .left .link').on('click', function () {
+          //               calendarInline.prevMonth();
+          //             });
+          //             $$('.calendar-custom-toolbar .right .link').on('click', function () {
+          //               calendarInline.nextMonth();
+          //             });
+          //           },
+          //           monthYearChangeStart: function (c) {
+          //             $$('.calendar-custom-toolbar .center').text(monthNames[c.currentMonth] +', ' + c.currentYear);
+          //           }
+          //         }
+          //       });
+          //     }
+          //   },
+          // },
           {
             path: '/dynamic-route/blog/:blogId/post/:postId/',
             component: 'page-dynamic-routing'
