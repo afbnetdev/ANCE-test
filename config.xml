@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ancebetaapp.com" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Ance Beta 0.1</name>
+    <description>
+        Ance news dispatcher beta version
+    </description>
+    <author email="bluemix@afbnet.it" href="http://www.afbnet.it">
+        AFB Net - A Vargroup company
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <plugin name="cordova-plugin-certificates" spec="0.6.4" />
+    <plugin name="cordova-plugin-console" spec="1.0.7" />
+    <plugin name="cordova-plugin-device" spec="2.0.2" />
+    <plugin name="cordova-plugin-inappbrowser" />
+    <plugin name="cordova-plugin-file" spec="~4.3.3" />
+    <plugin name="cordova-plugin-file-opener2" spec="~2.0.15" />
+    <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
+    <plugin name="cordova-plugin-keyboard" spec="^1.2.0" />
+    <plugin name="cordova-plugin-camera" spec="^2.4.1">
+        <param name="CAMERA_USAGE_DESCRIPTION" value="Take Photo" />
+        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Take Photo Library" />
+    </plugin>
+    <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
+</widget>
