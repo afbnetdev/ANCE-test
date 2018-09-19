@@ -235,7 +235,7 @@ new Vue({
                     listitems += '<li><div class="item-content"><div class="item-media"><i class="f7-icons">collection</i></div><div class="item-inner">';
                     listitems += '<div class="item-title"><div class="item-header">'+day+' '+month+' '+year+'</div>'+data[i].DescRassegna+'</div>';
                     // listitems += '<div class="item-after"><a href="javascript:void(0);" onclick="window.open(\'http://'+data[i].PathRassegna.replace(/\\/gi,"/")+'\', \'_system\');"><i class="f7-icons">info_fill</i></a></div>';
-                    listitems += '<div class="item-after"><a href="http://'+data[i].PathRassegna+'" target="_system"><i class="f7-icons">info_fill</i></a></div>';
+                    listitems += '<div class="item-after"><a href="http://'+data[i].PathRassegna+'" target="_system" class="link external"><i class="f7-icons">info_fill</i></a></div>';
                     listitems += '</div></div></li>';
                     //listitems += '</a>';
                   }
