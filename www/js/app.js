@@ -28,6 +28,8 @@ Vue.component('page-not-found', {
 });
 
 var $$ = Dom7;
+// console.log(cordova.InAppBrowser);
+// console.log(Framework7.device);
 if (!Framework7.device.desktop) {
   window.open = cordova.InAppBrowser.open;
 }
