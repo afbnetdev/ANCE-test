@@ -113,7 +113,7 @@ new Vue({
               pageAfterIn: function openStatuto (e, page) {
                 Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetLoStatuto', {}, function (data) {
                   $$('#statuto-loader').remove();
-                  $$('#statuto-container').html('<a href="http://'+data+'" class="link external" target="_blank"><img src="img/file-pdf-box.png" /></a><p>Visualizza lo statuto</p>');
+                  $$('#statuto-container').html('<a href="http://'+data+'" class="link external" target="_system"><img src="img/file-pdf-box.png" /></a><p>Visualizza lo statuto</p>');
                   // $$('#statuto-container').html('<img src="img/file-pdf-box.png" /><p>Visualizza lo statuto</p>');
                 });
               },
