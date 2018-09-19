@@ -28,7 +28,9 @@ Vue.component('page-not-found', {
 });
 
 var $$ = Dom7;
-
+if (!Framework7.device.desktop) {
+  window.open = cordova.InAppBrowser.open;
+}
 
 // Init App
 new Vue({
