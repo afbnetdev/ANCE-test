@@ -66,4 +66,12 @@
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="~4.5.5" />
     <plugin name="cordova-plugin-calendar" spec="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git" />
+    <!-- for Android -->
+    <feature name="Calendar">
+      <param name="android-package" value="nl.xservices.plugins.Calendar" />
+    </feature>
+    <!-- for iOS -->
+    <feature name="Calendar">
+    	<param name="ios-package" value="Calendar" />
+    </feature>
 </widget>

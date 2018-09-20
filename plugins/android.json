@@ -4,8 +4,19 @@
     "uninstalled": []
   },
   "config_munge": {
-    "files": {}
-  },
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Calendar\"><param name=\"android-package\" value=\"nl.xservices.plugins.Calendar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
   "installed_plugins": {
     "cordova-plugin-calendar": {
       "PACKAGE_NAME": "com.ancebetaapp.com"
