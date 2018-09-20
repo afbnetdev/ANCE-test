@@ -36,6 +36,9 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ancebetaapp.com"
+        },
+        "cordova-plugin-calendar": {
+            "PACKAGE_NAME": "com.ancebetaapp.com"
         }
     },
     "dependent_plugins": {

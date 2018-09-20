@@ -269,6 +269,14 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-calendar/www/Calendar.js",
+        "id": "cordova-plugin-calendar.Calendar",
+        "pluginId": "cordova-plugin-calendar",
+        "clobbers": [
+            "Calendar"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -284,7 +292,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-keyboard": "1.2.0",
     "cordova-plugin-camera": "2.4.1",
-    "cordova-plugin-statusbar": "1.0.1"
+    "cordova-plugin-statusbar": "1.0.1",
+    "cordova-plugin-calendar": "5.1.2"
 }
 // BOTTOM OF METADATA
 });

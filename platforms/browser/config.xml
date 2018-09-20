@@ -17,4 +17,5 @@
     <access origin="*" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
+    <preference name="android-build-tool" value="gradle" />
 </widget>

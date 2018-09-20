@@ -68,4 +68,7 @@
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Take Photo Library" />
     </plugin>
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
+    <plugin name="cordova-plugin-calendar" />
+
+    <preference name="android-build-tool" value="gradle" />
 </widget>
