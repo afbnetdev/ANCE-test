@@ -62,6 +62,4 @@
         <param name="CAMERA_USAGE_DESCRIPTION" value="Take Photo" />
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Take Photo Library" />
     </plugin>
-    <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <plugin name="cordova-plugin-calendar" />
 </widget>
