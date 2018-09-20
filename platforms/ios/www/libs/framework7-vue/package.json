@@ -1,0 +1,114 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "framework7-vue@^3.0.0",
+        "scope": null,
+        "escapedName": "framework7-vue",
+        "name": "framework7-vue",
+        "rawSpec": "^3.0.0",
+        "spec": ">=3.0.0 <4.0.0",
+        "type": "range"
+      },
+      "C:\\Users\\theloz\\Documenti\\Lavori\\Ance\\App\\Ance Beta 0.1"
+    ]
+  ],
+  "_from": "framework7-vue@>=3.0.0 <4.0.0",
+  "_hasShrinkwrap": false,
+  "_id": "framework7-vue@3.2.1",
+  "_inCache": true,
+  "_location": "/framework7-vue",
+  "_nodeVersion": "9.5.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/framework7-vue_3.2.1_1535718640681_0.6052745986611825"
+  },
+  "_npmUser": {
+    "name": "nolimits4web",
+    "email": "nolimits4web@gmail.com"
+  },
+  "_npmVersion": "5.7.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "framework7-vue@^3.0.0",
+    "scope": null,
+    "escapedName": "framework7-vue",
+    "name": "framework7-vue",
+    "rawSpec": "^3.0.0",
+    "spec": ">=3.0.0 <4.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/framework7-vue/-/framework7-vue-3.2.1.tgz",
+  "_shasum": "7288c439060268e581dfa6ea6d4469b1b0c03cf7",
+  "_shrinkwrap": null,
+  "_spec": "framework7-vue@^3.0.0",
+  "_where": "C:\\Users\\theloz\\Documenti\\Lavori\\Ance\\App\\Ance Beta 0.1",
+  "author": {
+    "name": "Vladimir Kharlampidi"
+  },
+  "bugs": {
+    "url": "https://github.com/framework7io/framework7/issues"
+  },
+  "dependencies": {},
+  "description": "Build full featured iOS & Android apps using Framework7 & Vue",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-0e81SLfqPRTHpoLQyh2HZ39Y5M4IJi/MLPNa3IDyJ1ymL/CYq3gJCNmfHsEBoqYXYSVnmaYFl1gT6RCMOpPkCA==",
+    "shasum": "7288c439060268e581dfa6ea6d4469b1b0c03cf7",
+    "tarball": "https://registry.npmjs.org/framework7-vue/-/framework7-vue-3.2.1.tgz",
+    "fileCount": 98,
+    "unpackedSize": 1170714,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJbiTTxCRA9TVsSAnZWagAAcWoP/j/AlK9J4biM0oByp/Pb\n/BzTpC2mJePJfiF4WYigPraJvkXDu9419PS1H/4mPnaZ4HlDvv5uDqan1Z45\n4sCxLbBgTwprTzqnWwBWxA0Wo9avYIvEST0SCBc5jBjeLUXGf3N61qRMlzWr\n9FgOnICOyCqtJ3pjO3WR2FHO8ixSWx+MPZq+eJUM6BhlsAgFI4RoKh/fpTlo\nDdU5uilhrDzJoXL4qSUSFYeFsjZLps7jb3sxhETukNp0Es7dO6dKsKGzq0ck\n4Ad+qixyehAyetJwkCaCiFvYD9OoaU0atWRgXejfL4aFtKgec30ahIfYv//F\nw/MkFG0yR8bV/naxmRMPQLr+aRbHYaHCKAZ0nN1/oG9szs+bAf6h9+TNWrTQ\nsj7k7Fm3EHAvCCLQdBYmihNywI8Ix0qF+1+TxyU9X9GWrxX7RHvYeNFcm3Dc\nSzZrPelPR3VGZ53bELdMIZnkdcKUCHuXDjfEc5Pon4QakUGddmSkW9y45XM3\nYxZAQ68rGxy7HoOgQ2GlXJ1AdjsO/GT6k97ilaUaCUUXCxgeWMIRK1ZaVbn+\nTrstpUERrrul3FsI7gy/wZXP5Wks4sdXPt5r6cXtPWAx/yUejH8C18c4gyG8\n8FrZVJJt4kCot6NHSBWTCtoftFSi3RT4PnkjtG76OMYI57i/2FAtwQuX1IZf\ngDWT\r\n=VCi6\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "homepage": "http://framework7.io/vue/",
+  "jsnext:main": "framework7-vue.esm.js",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "mobile",
+    "framework",
+    "framework7",
+    "cordova",
+    "ios",
+    "iphone",
+    "ipad",
+    "apple",
+    "phonegap",
+    "native",
+    "touch",
+    "appstore",
+    "app",
+    "f7",
+    "material",
+    "android",
+    "google",
+    "googleplay"
+  ],
+  "license": "MIT",
+  "main": "framework7-vue.js",
+  "maintainers": [
+    {
+      "name": "nolimits4web",
+      "email": "nolimits4web@gmail.com"
+    }
+  ],
+  "module": "framework7-vue.esm.js",
+  "name": "framework7-vue",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "vue": "2.x"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/framework7io/framework7.git"
+  },
+  "scripts": {
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove Framework7 Vue? Support project by donating or pledging on patreon:\\u001b[22m\\u001b[39m\\n > \\u001b[32mhttps://patreon.com/vladimirkharlampidi\\u001b[0m\\n')\""
+  },
+  "version": "3.2.1"
+}
