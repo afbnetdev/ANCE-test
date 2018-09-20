@@ -250,9 +250,46 @@ new Vue({
             component: 'page-agenda',
             on: {
               pageAfterIn: function openAgenda(e,page){
+                // $('#calendar').fullCalendar({
+                //   header: { center: 'month,agendaWeek' },
+                //   dayClick: function(date, jsEvent, view) {
+                //     alert('clicked on ' + date.format());
+                //   },
+                //   agenda: {
+                //     // options apply to agendaWeek and agendaDay views
+                //   },
+                //   option: {
+                //     locale: 'it',
+                //   },
+                // })
                 $('#calendar').fullCalendar({
-                  // put your options and callbacks here
-                })
+                  eventClick: function(eventObj) {
+                    if (eventObj.url) {
+                      alert(
+                        'Clicked ' + eventObj.title + '.\n' +
+                        'Will open ' + eventObj.url + ' in a new tab'
+                      );
+
+                      window.open(eventObj.url);
+
+                      return false; // prevents browser from following link in current tab.
+                    } else {
+                      alert('Clicked ' + eventObj.title);
+                    }
+                  },
+                  defaultDate: '2018-08-15',
+                  events: [
+                    {
+                      title: 'simple event',
+                      start: '2018-08-02'
+                    },
+                    {
+                      title: 'event with URL',
+                      url: 'https://www.google.com/',
+                      start: '2018-08-03'
+                    }
+                  ]
+                });
               },
             },
             // on: {
