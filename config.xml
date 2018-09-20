@@ -62,17 +62,17 @@
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Take Photo Library" />
     </plugin>
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <preference name="android-build-tool" value="gradle" />
-    <engine name="android" spec="~7.0.0" />
-    <engine name="ios" spec="~4.5.5" />
+    <!-- <engine name="android" spec="~7.0.0" /> -->
+    <!-- <engine name="ios" spec="~4.5.5" /> -->
     <!-- <plugin name="cordova-plugin-calendar" spec="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git" /> -->
     <plugin name="cordova-plugin-calendar" spec="4.6.0" />
+    <preference name="android-build-tool" value="gradle" />
     <!-- for Android -->
-    <feature name="Calendar">
+    <!-- <feature name="Calendar">
       <param name="android-package" value="nl.xservices.plugins.Calendar" />
-    </feature>
+    </feature> -->
     <!-- for iOS -->
-    <feature name="Calendar">
+    <!-- <feature name="Calendar">
     	<param name="ios-package" value="Calendar" />
-    </feature>
+    </feature> -->
 </widget>
