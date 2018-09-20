@@ -38,8 +38,7 @@
     "material-design-icons": "^3.0.1"
   },
   "dependencies": {
-    "cordova-android": "^7.0.0",
-    "cordova-ios": "^4.5.5",
+    "cordova-browser": "^5.0.4",
     "cordova-plugin-calendar": "git+https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git",
     "cordova-plugin-camera": "^2.4.1",
     "cordova-plugin-certificates": "0.6.4",
@@ -65,9 +64,6 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-calendar": {}
     },
-    "platforms": [
-      "android",
-      "ios"
-    ]
+    "platforms": []
   }
 }

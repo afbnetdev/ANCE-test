@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ancebetaapp.com" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.ancebetaapp.com" version="1.0.10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Ance Beta 0.1</name>
     <description>
         Ance news dispatcher beta version
@@ -49,6 +49,7 @@
         <preference name="BackupWebStorage" value="none" />
         <preference name="StatusBarBackgroundColor" value="#000000" />
     </platform>
+    <preference name="android-build-tool" value="gradle" />
     <plugin name="cordova-plugin-certificates" spec="0.6.4" />
     <plugin name="cordova-plugin-console" spec="1.0.7" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
@@ -62,17 +63,5 @@
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Take Photo Library" />
     </plugin>
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <!-- <engine name="android" spec="~7.0.0" /> -->
-    <!-- <engine name="ios" spec="~4.5.5" /> -->
-    <!-- <plugin name="cordova-plugin-calendar" spec="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git" /> -->
     <plugin name="cordova-plugin-calendar" />
-    <preference name="android-build-tool" value="gradle" />
-    <!-- for Android -->
-    <!-- <feature name="Calendar">
-      <param name="android-package" value="nl.xservices.plugins.Calendar" />
-    </feature> -->
-    <!-- for iOS -->
-    <!-- <feature name="Calendar">
-    	<param name="ios-package" value="Calendar" />
-    </feature> -->
 </widget>
