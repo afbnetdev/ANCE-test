@@ -248,6 +248,13 @@ new Vue({
           {
             path: '/agenda/',
             component: 'page-agenda',
+            on: {
+              pageAfterIn: function openAgenda(e,page){
+                $('#calendar').fullCalendar({
+                  // put your options and callbacks here
+                })
+              },
+            },
             // on: {
             //   pageAfterIn: function openAgenda (e, page) {
             //     var monthNames = getMonths(0,2);

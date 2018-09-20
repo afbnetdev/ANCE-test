@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="libs/framework7/css/framework7.min.css">
   <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel='stylesheet' href='js/calendar/fullcalendar.css' />
 </head>
 <body>
   <div id="app">
@@ -266,7 +267,7 @@
       <div class="block-title">Inline Calendar</div>
       <div class="block block-strong padding">
         <!-- <div id="demo-calendar-inline-container"></div> -->
-
+        <div id='calendar'></div>
     </f7-page>
   </template>
 
@@ -322,8 +323,22 @@
   <script src="libs/framework7-vue/framework7-vue.min.js"></script>
   <!-- Your custom app scripts -->
   <script src="js/app.js"></script>
-  <script src="js/Calendar.js"></script>
-  <script src="js/calendar-actions.js"></script>
 
+  <script src='js/calendar/lib/jquery.min.js'></script>
+  <script src='js/calendar/lib/moment.min.js'></script>
+  <script src='js/calendar/fullcalendar.min.js'></script>
+  <script>
+  // import $ from 'jquery';
+  // import 'fullcalendar';
+//   $(function() {
+//
+// // page is now ready, initialize the calendar...
+//
+//       $('#calendar').fullCalendar({
+//         // put your options and callbacks here
+//       })
+//
+//     });
+  </script>
 </body>
 </html>
