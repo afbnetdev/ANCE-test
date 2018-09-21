@@ -50,43 +50,39 @@ new Vue({
         name: 'ANCE beta',
         theme: 'md',
         removeElements: true,
+        on: {
+          pageInit: function (e,page){
+            // console.log('home init');
+            // console.log(page.route);
+            Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Notizie/GetNotizie', {}, function (data) {
+              var news="";
+              for(i=0;i<data.length;i++){
+                var day = data[i].DataDocumento.substring(8,10);
+                var month = getMonths(data[i].DataDocumento.substring(5,7),1);
+                var year = data[i].DataDocumento.substring(0,4);
+                news += '';
+                news += '<div class="card demo-card-header-pic">';
+                if(data[i].LinkImgIntestazione !=""){
+                  news += '<div style="background-image:url(http://'+data[i].LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
+                }
+                news += '<div class="card-header text-align-left"><a href="/newsdetail/newsid/'+i+'" class="link"><strong>'+data[i].TitoloAnteprima+'</strong></a></div>';
+                news += '<div class="card-content card-content-padding  text-align-justify">';
+                news += '<p>'+data[i].Abstract+'</p>';
+                news += '</div>';
+                news += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+data[i].Titoletto+'</span></div>';
+                //news += '<div class="card-footer"><a href="/newsdetail/newsid/'+i+'" class="link">Approfondisci</a></div>';
+                news += '</div>';
+              }
+              $$('#home-loader').remove();
+              $$('#home-container').html(news);
+            });
+          },
+        },
         // App routes
         routes: [
           {
             path: '/',
             component: 'home',
-            on: {
-              // pageAfterIn:
-              pageInit: function (e,page){
-                // console.log('home init');
-                // console.log(page.route);
-                Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Notizie/GetNotizie', {}, function (data) {
-                  var news="";
-                  for(i=0;i<data.length;i++){
-                    var day = data[i].DataDocumento.substring(8,10);
-                    var month = getMonths(data[i].DataDocumento.substring(5,7),1);
-                    var year = data[i].DataDocumento.substring(0,4);
-                    news += '';
-                    news += '<div class="card demo-card-header-pic">';
-                    if(data[i].LinkImgIntestazione !=""){
-                      news += '<div style="background-image:url(http://'+data[i].LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
-                    }
-                    news += '<div class="card-header text-align-left"><a href="/newsdetail/newsid/'+i+'" class="link"><strong>'+data[i].TitoloAnteprima+'</strong></a></div>';
-                    news += '<div class="card-content card-content-padding  text-align-justify">';
-                    news += '<p>'+data[i].Abstract+'</p>';
-                    news += '</div>';
-                    news += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+data[i].Titoletto+'</span></div>';
-                    //news += '<div class="card-footer"><a href="/newsdetail/newsid/'+i+'" class="link">Approfondisci</a></div>';
-                    news += '</div>';
-                  }
-                  $$('#home-loader').remove();
-                  $$('#home-container').html(news);
-                });
-              },
-              // pageAfterIn: function openAbout (e, page) {
-              //   console.log('home');
-              // }
-            },
           },
           {
             path: '/newsdetail/newsid/:newsId',
