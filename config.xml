@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ancebetaapp.com" version="1.0.10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.ancebetaapp.com" version="1.0.32" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Ance Beta 0.1</name>
     <description>
         Ance news dispatcher beta version
@@ -62,4 +62,6 @@
         <param name="CAMERA_USAGE_DESCRIPTION" value="Take Photo" />
         <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Take Photo Library" />
     </plugin>
+    <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
+    <plugin name="cordova-plugin-calendar" />
 </widget>
