@@ -23,6 +23,9 @@ Vue.component('page-stampa', {
 Vue.component('page-agenda', {
   template: '#page-agenda'
 });
+Vue.component('page-agendadetail', {
+  template: '#page-agendadetail'
+});
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
 });
@@ -235,48 +238,18 @@ new Vue({
             path: '/agenda/',
             component: 'page-agenda',
             on: {
-              pageAfterIn: function openAgenda(e,page){
-                // $('#calendar').fullCalendar({
-                //   header: { center: 'month,agendaWeek' },
-                //   dayClick: function(date, jsEvent, view) {
-                //     alert('clicked on ' + date.format());
-                //   },
-                //   agenda: {
-                //     // options apply to agendaWeek and agendaDay views
-                //   },
-                //   option: {
-                //     locale: 'it',
-                //   },
-                // })
-                $('#calendar').fullCalendar({
-                  eventClick: function(eventObj) {
-                    if (eventObj.url) {
-                      alert(
-                        'Clicked ' + eventObj.title + '.\n' +
-                        'Will open ' + eventObj.url + ' in a new tab'
-                      );
-
-                      window.open(eventObj.url);
-
-                      return false; // prevents browser from following link in current tab.
-                    } else {
-                      alert('Clicked ' + eventObj.title);
-                    }
-                  },
-                  defaultDate: '2018-08-15',
-                  events: [
-                    {
-                      title: 'simple event',
-                      start: '2018-08-02'
-                    },
-                    {
-                      title: 'event with URL',
-                      url: 'https://www.google.com/',
-                      start: '2018-08-03'
-                    }
-                  ]
-                });
-              },
+              pageAfterIn: function(e,page){
+                openAgenda (e, page);
+              }
+            },
+          },
+          {
+            path: '/agendadetail/id/:id',
+            component: 'page-agendadetail',
+            on: {
+              pageAfterIn: function(e,page){
+                agendaDetail (e, page);
+              }
             },
           },
           {

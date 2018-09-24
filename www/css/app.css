@@ -41,3 +41,35 @@
 .demo-card-header-pic .card-content-padding .date{
   color: #8e8e93;
 }
+/* CALENDAR */
+#calendar-agenda{
+  height: 100%;
+}
+#calendar-agenda .fc-view-container,
+#calendar-agenda .fc-view-container .fc-month-view{
+  min-height: 350px!important;
+}
+.fc-header-toolbar {
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.fc-footer-toolbar{
+  padding-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.fc-button{
+  border: 0px!important;
+  background: #003e7e !important;
+  color:white!important;
+}
+.fc-button-group button{
+  max-width:78px!important;
+}
+#calendar-agenda .fc-footer-toolbar .fc-button-group{
+  width: 232px!important;
+}
+.fc-header-toolbar .fc-center h2{
+  text-transform: capitalize!important;
+}

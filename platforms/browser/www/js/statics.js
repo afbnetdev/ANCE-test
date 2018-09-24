@@ -56,7 +56,7 @@ function openVertici (e, page) {
 function openOrgani (e, page) {
   Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetOrganiAnce', {}, function (data) {
     //$$('#story-container').html(data);
-    console.log(data[0]);
+    //console.log(data[0]);
     var governance='';
     var commissioni='';
     var comitati='';
@@ -78,7 +78,7 @@ function openOrgani (e, page) {
         break;
       }
     }
-    //console.log(presidenti);
+    console.log(commissioni);
     $$('#organi-container').remove();
     $$('#list-organi-governance').html(governance);
     $$('#list-organi-commissioni').html(commissioni);

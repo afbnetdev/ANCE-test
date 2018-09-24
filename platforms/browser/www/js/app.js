@@ -23,6 +23,9 @@ Vue.component('page-stampa', {
 Vue.component('page-agenda', {
   template: '#page-agenda'
 });
+Vue.component('page-agendadetail', {
+  template: '#page-agendadetail'
+});
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
 });
@@ -50,43 +53,39 @@ new Vue({
         name: 'ANCE beta',
         theme: 'md',
         removeElements: true,
+        on: {
+          pageInit: function (e,page){
+            // console.log('home init');
+            // console.log(page.route);
+            Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Notizie/GetNotizie', {}, function (data) {
+              var news="";
+              for(i=0;i<data.length;i++){
+                var day = data[i].DataDocumento.substring(8,10);
+                var month = getMonths(data[i].DataDocumento.substring(5,7),1);
+                var year = data[i].DataDocumento.substring(0,4);
+                news += '';
+                news += '<div class="card demo-card-header-pic">';
+                if(data[i].LinkImgIntestazione !=""){
+                  news += '<div style="background-image:url(http://'+data[i].LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
+                }
+                news += '<div class="card-header text-align-left"><a href="/newsdetail/newsid/'+i+'" class="link"><strong>'+data[i].TitoloAnteprima+'</strong></a></div>';
+                news += '<div class="card-content card-content-padding  text-align-justify">';
+                news += '<p>'+data[i].Abstract+'</p>';
+                news += '</div>';
+                news += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+data[i].Titoletto+'</span></div>';
+                //news += '<div class="card-footer"><a href="/newsdetail/newsid/'+i+'" class="link">Approfondisci</a></div>';
+                news += '</div>';
+              }
+              $$('#home-loader').remove();
+              $$('#home-container').html(news);
+            });
+          },
+        },
         // App routes
         routes: [
           {
             path: '/',
             component: 'home',
-            on: {
-              // pageAfterIn:
-              pageInit: function (e,page){
-                // console.log('home init');
-                // console.log(page.route);
-                Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Notizie/GetNotizie', {}, function (data) {
-                  var news="";
-                  for(i=0;i<data.length;i++){
-                    var day = data[i].DataDocumento.substring(8,10);
-                    var month = getMonths(data[i].DataDocumento.substring(5,7),1);
-                    var year = data[i].DataDocumento.substring(0,4);
-                    news += '';
-                    news += '<div class="card demo-card-header-pic">';
-                    if(data[i].LinkImgIntestazione !=""){
-                      news += '<div style="background-image:url(http://'+data[i].LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
-                    }
-                    news += '<div class="card-header text-align-left"><a href="/newsdetail/newsid/'+i+'" class="link"><strong>'+data[i].TitoloAnteprima+'</strong></a></div>';
-                    news += '<div class="card-content card-content-padding  text-align-justify">';
-                    news += '<p>'+data[i].Abstract+'</p>';
-                    news += '</div>';
-                    news += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+data[i].Titoletto+'</span></div>';
-                    //news += '<div class="card-footer"><a href="/newsdetail/newsid/'+i+'" class="link">Approfondisci</a></div>';
-                    news += '</div>';
-                  }
-                  $$('#home-loader').remove();
-                  $$('#home-container').html(news);
-                });
-              },
-              // pageAfterIn: function openAbout (e, page) {
-              //   console.log('home');
-              // }
-            },
           },
           {
             path: '/newsdetail/newsid/:newsId',
@@ -239,48 +238,18 @@ new Vue({
             path: '/agenda/',
             component: 'page-agenda',
             on: {
-              pageAfterIn: function openAgenda(e,page){
-                // $('#calendar').fullCalendar({
-                //   header: { center: 'month,agendaWeek' },
-                //   dayClick: function(date, jsEvent, view) {
-                //     alert('clicked on ' + date.format());
-                //   },
-                //   agenda: {
-                //     // options apply to agendaWeek and agendaDay views
-                //   },
-                //   option: {
-                //     locale: 'it',
-                //   },
-                // })
-                $('#calendar').fullCalendar({
-                  eventClick: function(eventObj) {
-                    if (eventObj.url) {
-                      alert(
-                        'Clicked ' + eventObj.title + '.\n' +
-                        'Will open ' + eventObj.url + ' in a new tab'
-                      );
-
-                      window.open(eventObj.url);
-
-                      return false; // prevents browser from following link in current tab.
-                    } else {
-                      alert('Clicked ' + eventObj.title);
-                    }
-                  },
-                  defaultDate: '2018-08-15',
-                  events: [
-                    {
-                      title: 'simple event',
-                      start: '2018-08-02'
-                    },
-                    {
-                      title: 'event with URL',
-                      url: 'https://www.google.com/',
-                      start: '2018-08-03'
-                    }
-                  ]
-                });
-              },
+              pageAfterIn: function(e,page){
+                openAgenda (e, page);
+              }
+            },
+          },
+          {
+            path: '/agendadetail/id/:id',
+            component: 'page-agendadetail',
+            on: {
+              pageAfterIn: function(e,page){
+                agendaDetail (e, page);
+              }
             },
           },
           {
