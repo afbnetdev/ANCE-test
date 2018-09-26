@@ -23,9 +23,9 @@ Vue.component('page-stampa', {
 Vue.component('page-agenda', {
   template: '#page-agenda'
 });
-Vue.component('page-agendadetail', {
-  template: '#page-agendadetail'
-});
+// Vue.component('page-agendadetail', {
+//   template: '#page-agendadetail'
+// });
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
 });
@@ -40,7 +40,7 @@ Vue.component('page-not-found', {
 });
 
 var $$ = Dom7;
-
+// var app = new Framework7();
 // Init App
 new Vue({
   el: '#app',
@@ -73,7 +73,6 @@ new Vue({
                 news += '<p>'+data[i].Abstract+'</p>';
                 news += '</div>';
                 news += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+data[i].Titoletto+'</span></div>';
-                //news += '<div class="card-footer"><a href="/newsdetail/newsid/'+i+'" class="link">Approfondisci</a></div>';
                 news += '</div>';
               }
               $$('#home-loader').remove();
@@ -83,10 +82,6 @@ new Vue({
         },
         // App routes
         routes: [
-          {
-            path: '/',
-            component: 'home',
-          },
           {
             path: '/newsdetail/newsid/:newsId',
             component: 'page-newsdetail',

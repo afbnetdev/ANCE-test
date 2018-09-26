@@ -73,3 +73,8 @@
 .fc-header-toolbar .fc-center h2{
   text-transform: capitalize!important;
 }
+#agendadetail-container .card-content{
+  height: 200px;
+  max-height: 80%!important;
+  overflow-y: auto;
+}

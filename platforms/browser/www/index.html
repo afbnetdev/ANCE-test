@@ -67,7 +67,7 @@
 
       <!-- Main View -->
       <f7-view id="main-view" main>
-        <template id="home">
+        <!-- <template id="page-home"> -->
         <f7-page>
           <f7-navbar class="color-white">
             <f7-nav-left>
@@ -98,10 +98,10 @@
             </f7-col>
           </f7-block>
         </f7-page>
-      </template>
+      <!-- </template> -->
       </f7-view>
       <!-- Popup -->
-      <f7-popup id="popup">
+      <f7-popup id="agenda-detail">
         <f7-view>
           <f7-page>
             <f7-navbar title="Popup">
@@ -109,7 +109,8 @@
                 <f7-link popup-close>Close</f7-link>
               </f7-nav-right>
             </f7-navbar>
-            <f7-block>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, architecto. Cupiditate laudantium rem nesciunt numquam, ipsam. Voluptates omnis, a inventore atque ratione aliquam. Omnis iusto nemo quos ullam obcaecati, quod.</f7-block>
+            <f7-block id="agendadetail-block">...
+            </f7-block>
           </f7-page>
         </f7-view>
       </f7-popup>
@@ -332,7 +333,7 @@
   <!-- Agenda Page Template -->
   <template id="page-agenda">
     <f7-page>
-      <f7-navbar title="Agenda" back-link="Indietro"></f7-navbar>
+    </f7-navbar><f7-navbar title="Agenda" back-link="Indietro"></f7-navbar>
       <f7-block class="row" id="agenda-loader" class="text-align-center">
         <f7-col>
           <f7-preloader color="blue"></f7-preloader>
@@ -344,9 +345,14 @@
     </template>
 
     <!-- Agenda Details Page Template -->
-    <template id="page-agendadetail">
+    <!-- <template id="page-agendadetail">
       <f7-page>
-        <f7-navbar title="Appuntamento" back-link="Indietro"></f7-navbar>
+        <f7-navbar>
+          <f7-nav-left>
+            <f7-link href="/agenda/"><i class="icon icon-back"></i></f7-link>
+          </f7-nav-left>
+          <f7-nav-title>Appuntamento</f7-nav-title>
+        </f7-navbar>
         <f7-block class="row text-align-center" id="agendadetail-loader">
           <f7-col>
             <f7-preloader color="blue"></f7-preloader>
@@ -354,7 +360,7 @@
         </f7-block>
         <div strong class="text-align-center" id="agendadetail-container"></div>
       </f7-page>
-  </template>
+  </template> -->
   <!-- Page Not Found Template -->
   <template id="page-not-found">
     <f7-page>
