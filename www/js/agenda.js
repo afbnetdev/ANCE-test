@@ -22,16 +22,12 @@ function openAgenda(e,page){
         eventTitle: data[i].OggettoTitolo,
         eventPlace: data[i].Luogo,
         eventDate: data[i].Data,
+        linkIcs: data[i].LinkIcs,
       }
     }
     // console.log(eventsArray);
     $('#calendar-agenda').fullCalendar({
       eventClick: function(eventObj) {
-        //if (eventObj.url) {
-          //window.location.href(eventObj.url);
-          // console.log(app);
-          //console.log(eventObj);
-          // var app = new Framework7();
           var agendaItem = '';
           var eventID = eventObj.id;
           var body = eventObj.eventBody.replace(/<a href/gi, '<a class="link external" target="_system" href').replace(/\\/gi, '/');
@@ -39,10 +35,12 @@ function openAgenda(e,page){
           var month = getMonths(eventObj.eventDate.substring(5,7),1);
           var year = eventObj.eventDate.substring(0,4);
           var attachments = eventObj.eventAttachments;
+          var calLink = eventObj.linkIcs.replace(/\\/gi, '/');
+          console.log(calLink);
           agendaItem += '<div class="card demo-card-header-pic">';
           agendaItem += '<div class="card-header text-align-left"><strong>'+eventObj.title+'</strong></div>';
           agendaItem += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+eventObj.eventPlace+'</span></div>';
-          agendaItem += '<div class="card-footer"><a href="" class="link external"><i class="f7-icons">calendar_fill</i>&nbsp;Aggiungi al calendario</a></div>';
+          agendaItem += '<div class="card-footer"><a href="'+calLink+'" class="link external" target="_system"><i class="f7-icons">calendar_fill</i>&nbsp;Aggiungi al calendario</a></div>';
           agendaItem += '<div class="card-content card-content-padding text-align-justify">';
           agendaItem += '<p>'+body+'</p>';
 
@@ -74,15 +72,7 @@ function openAgenda(e,page){
           });
           // Open dynamic popup
           dynamicPopup.open();
-          // $$('#agendadetail-block').html(agendaItem);
-          // var pop = $$('#agenda-detail');
-          // pop.open();
           return false; // prevents browser from following link in current tab.
-
-        // }
-        // else {
-        //   alert('Clicked ' + eventObj.title);
-        // }
       },
       defaultDate: yyyy+'-'+mm+'-'+dd,
       events: eventsArray,
