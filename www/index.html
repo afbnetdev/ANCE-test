@@ -67,7 +67,6 @@
 
       <!-- Main View -->
       <f7-view id="main-view" main>
-        <!-- <template id="page-home"> -->
         <f7-page>
           <f7-navbar class="color-white">
             <f7-nav-left>
@@ -98,7 +97,6 @@
             </f7-col>
           </f7-block>
         </f7-page>
-      <!-- </template> -->
       </f7-view>
       <!-- Popup -->
       <f7-popup id="agenda-detail">
@@ -130,6 +128,7 @@
       </f7-block>
     </f7-page>
   </template>
+
   <!-- Storia Page Template -->
   <template id="page-storia">
     <f7-page>
@@ -277,7 +276,10 @@
   <!-- Analisi Page Template -->
   <template id="page-analisi">
     <f7-page>
-      <f7-navbar title="Analisi" back-link="Indietro"></f7-navbar>
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/home/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Analisi</f7-nav-title>
+      </f7-navbar>
       <f7-block strong id="analisi-container" class="text-align-center">
           <f7-block class="row" id="analisi-loader">
           <f7-col>
@@ -286,11 +288,27 @@
       </f7-block>
     </f7-page>
   </template>
+  <!-- Dettaglio Analisi Page Template -->
+  <template id="page-analisidetail">
+    <f7-page>
+      <f7-navbar title="Dettaglio" back-link="Indietro"></f7-navbar>
+      <div strong class="text-align-center" id="analisidetail-container">
+        <!-- <img src="img/logo_ance_blue.png" /> -->
+        <f7-block class="row text-align-center" id="analisidetail-loader">
+        <f7-col>
+          <f7-preloader color="blue"></f7-preloader>
+        </f7-col>
+      </div>
+    </f7-page>
+  </template>
 
   <!-- Stampa Page Template -->
   <template id="page-stampa">
     <f7-page>
-      <f7-navbar title="Stampa" back-link="Indietro"></f7-navbar>
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/home/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Stampa</f7-nav-title>
+      </f7-navbar>
       <f7-toolbar tabbar>
         <f7-link tab-link="#tabstampa-1" tab-link-active>Rassegne</f7-link>
         <f7-link tab-link="#tabstampa-2">Dossier</f7-link>
@@ -310,13 +328,27 @@
               <f7-preloader color="blue"></f7-preloader>
             </f7-col>
           </f7-block>
-          <div class="list"><ul id="list-dossier"></ul></div>
+          <div class="list" id="list-dossier"></div>
         </f7-tab>
       </f7-tabs>
     </f7-page>
   </template>
 
-  <!-- Notizie Page Template -->
+  <!-- Dettaglio Dossier Page Template -->
+  <template id="page-dossierdetail">
+    <f7-page>
+      <f7-navbar title="Dossier" back-link back-link-url="/about/"></f7-navbar>
+      <div strong class="text-align-center" id="dossierdetail-container">
+        <!-- <img src="img/logo_ance_blue.png" /> -->
+        <f7-block class="row text-align-center" id="dossierdetail-loader">
+        <f7-col>
+          <f7-preloader color="blue"></f7-preloader>
+        </f7-col>
+      </div>
+    </f7-page>
+  </template>
+
+  <!-- Dettaglio Notizie Page Template -->
   <template id="page-newsdetail">
     <f7-page>
       <f7-navbar title="Dettaglio" back-link="Indietro"></f7-navbar>
@@ -389,6 +421,9 @@
   <script src="js/app.js"></script>
   <script src="js/statics.js"></script>
   <script src='js/agenda.js'></script>
+  <script src='js/stampa.js'></script>
+  <script src='js/news.js'></script>
+  <script src='js/analisi.js'></script>
 
 </body>
 </html>

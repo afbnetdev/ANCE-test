@@ -20,6 +20,9 @@ Vue.component('page-organi', {
 Vue.component('page-stampa', {
   template: '#page-stampa'
 });
+Vue.component('page-dossierdetail',{
+  template: '#page-dossierdetail'
+});
 Vue.component('page-agenda', {
   template: '#page-agenda'
 });
@@ -35,8 +38,14 @@ Vue.component('page-prodotti', {
 Vue.component('page-analisi', {
   template: '#page-analisi'
 });
+Vue.component('page-analisidetail', {
+  template: '#page-analisidetail'
+});
 Vue.component('page-not-found', {
   template: '#page-not-found'
+});
+Vue.component('page-home', {
+  template: '#main-view'
 });
 
 var $$ = Dom7;
@@ -57,74 +66,22 @@ new Vue({
           pageInit: function (e,page){
             // console.log('home init');
             // console.log(page.route);
-            Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Notizie/GetNotizie', {}, function (data) {
-              var news="";
-              for(i=0;i<data.length;i++){
-                var day = data[i].DataDocumento.substring(8,10);
-                var month = getMonths(data[i].DataDocumento.substring(5,7),1);
-                var year = data[i].DataDocumento.substring(0,4);
-                news += '';
-                news += '<div class="card demo-card-header-pic">';
-                if(data[i].LinkImgIntestazione !=""){
-                  news += '<div style="background-image:url(http://'+data[i].LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
-                }
-                news += '<div class="card-header text-align-left"><a href="/newsdetail/newsid/'+i+'" class="link"><strong>'+data[i].TitoloAnteprima+'</strong></a></div>';
-                news += '<div class="card-content card-content-padding  text-align-justify">';
-                news += '<p>'+data[i].Abstract+'</p>';
-                news += '</div>';
-                news += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+data[i].Titoletto+'</span></div>';
-                news += '</div>';
-              }
-              $$('#home-loader').remove();
-              $$('#home-container').html(news);
-            });
+            getNews(e,page);
           },
         },
         // App routes
         routes: [
           {
+            path: '/home/',
+            component: 'page-home',
+          },
+          {
             path: '/newsdetail/newsid/:newsId',
             component: 'page-newsdetail',
             on: {
               pageAfterIn: function openAbout (e, page) {
-                Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Notizie/GetNotizie', {}, function (data) {
-                  var newsItem = '';
-                  var newsID = page.route.params.newsId;
-                  var body = data[newsID].Body.replace(/<a href/gi, '<a class="link external" target="_system" href');
-                  var intestazione = data[newsID].LinkImgIntestazione;
-                  var day = data[newsID].DataDocumento.substring(8,10);
-                  var month = getMonths(data[newsID].DataDocumento.substring(5,7),1);
-                  var year = data[newsID].DataDocumento.substring(0,4);
-                  var privacyflag = data[newsID].FlagPrivacy;
-                  var privacytxt = data[newsID].TestoPrivacy;
-                  var attachments = data[newsID].LinkAttachItems;
-
-                  newsItem += '<div class="card demo-card-header-pic">';
-                  if(intestazione !=""){
-                    newsItem += '<div style="background-image:url(http://'+intestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end">'+data[newsID].Titoletto+'</div>';
-                  }
-                  newsItem += '<div class="card-header text-align-left"><strong>'+data[newsID].Titolo+'</strong></div>';
-                  newsItem += '<div class="card-footer"><span class="text-align-left">'+day+' '+month+' '+year+'</span> <span class="text-align-right">'+data[newsID].Titoletto+'</span></div>';
-                  newsItem += '<div class="card-content card-content-padding text-align-justify">';
-                  newsItem += '<p>'+body+'</p>';
-                  if(privacyflag){
-                    newsItem += '<p>'+privacytxt+'</p>';
-                  }
-                  if(attachments.length > 0){
-                    newsItem += '<div class="block-title">Allegati</div>';
-                    newsItem += '<div class="list links-list"><ul>';
-                    for(i=0;i<attachments.length;i++){
-                      item = attachments[i];
-                      newsItem += '<li><a href="http://'+item.LinkAttach.replace(/\\/gi,"/")+'" class="link external" target="_system">'+item.AttachName+'</a></li>';
-                    }
-                    newsItem += '</ul></div>';
-                  }
-                  newsItem += '</div>';
-                  newsItem += '</div>';
-                  $$('#newsdetail-loader').remove();
-                  var news="";
-                  $$('#newsdetail-container').html(newsItem);
-                });
+                var newsID = page.route.params.newsId;
+                getNewsDetail(e,page,newsID);
               },
             }
           },
@@ -194,13 +151,18 @@ new Vue({
             path: '/analisi/',
             component: 'page-analisi',
             on: {
-              pageAfterIn: function openAnalisi (e, page) {
-                // Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetChiSiamo', { foo:'bar', id:5 }, function (data) {
-                // Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetChiSiamo', {}, function (data) {
-                //   $$('#prodotti-container').html(data.Abstract);
-                // });
-
-                console.log('Analisi');
+              pageAfterIn: function (e, page) {
+                getAnalisi(e,page);
+              },
+            }
+          },
+          {
+            path: '/analisidetail/analisiid/:analisiId',
+            component: 'page-analisidetail',
+            on: {
+              pageAfterIn: function openAbout (e, page) {
+                var analisiID = page.route.params.analisiId;
+                getAnalisiDetail(e,page,analisiID);
               },
             }
           },
@@ -209,23 +171,19 @@ new Vue({
             component: 'page-stampa',
             on: {
               pageAfterIn: function openRassegna (e, page) {
-                Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Rassegna/GetRassegna', {}, function (data) {
-                  var listitems = '';
-                  for(i=0;i<data.length;i++){
-                    var day = data[i].DataRassegna.substring(8,10);
-                    var month = getMonths(data[i].DataRassegna.substring(5,7),1);
-                    var year = data[i].DataRassegna.substring(0,4);
-                    //listitems += '';
-                    listitems += '<li><div class="item-content"><div class="item-media"><i class="f7-icons">collection</i></div><div class="item-inner">';
-                    listitems += '<div class="item-title"><div class="item-header">'+day+' '+month+' '+year+'</div>'+data[i].DescRassegna+'</div>';
-                    // listitems += '<div class="item-after"><a href="javascript:void(0);" onclick="window.open(\'http://'+data[i].PathRassegna.replace(/\\/gi,"/")+'\', \'_system\');"><i class="f7-icons">info_fill</i></a></div>';
-                    listitems += '<div class="item-after"><a href="http://'+data[i].PathRassegna+'" target="_system" class="link external"><i class="f7-icons">info_fill</i></a></div>';
-                    listitems += '</div></div></li>';
-                    //listitems += '</a>';
-                  }
-                  $$('#rassegna-loader').remove();
-                  $$('#list-rassegna').html(listitems);
-                });
+                getRassegna(e,page);
+                getDossierList(e,page);
+              },
+            }
+          },
+          {
+            path: '/dossierdetail/dossierid/:dossierid',
+            component: 'page-dossierdetail',
+            on: {
+              pageAfterIn: function openDossier (e, page) {
+                var dossId = page.route.params.dossierid;
+                console.log(dossId);
+                getDossierDetail(e,page,dossId);
               },
             }
           },
