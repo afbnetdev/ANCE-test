@@ -112,7 +112,7 @@ function getServizi(e,page){
         listitems += '<p>'+data[i].Abstract+'</p>';
       }
       else if(data[i].Body){
-        listitems += '<p>'+data[i].Body+'</p>';
+        listitems += '<p>'+body+'</p>';
       }
       if(data[i].LinkEsternoAnteprima){
         listitems += '<p><a href="'+data[i].LinkEsternoAnteprima+'" class="link external" target="_system">Anteprima</a></p>';
