@@ -245,7 +245,10 @@
   <!-- Prodotti Page Template -->
   <template id="page-prodotti">
     <f7-page>
-      <f7-navbar title="Prodotti" back-link="Indietro"></f7-navbar>
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/home/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Prodotti</f7-nav-title>
+      </f7-navbar>
       <f7-toolbar tabbar>
         <f7-link tab-link="#tabprodotti-1" tab-link-active>Guide</f7-link>
         <f7-link tab-link="#tabprodotti-2">Convenzioni</f7-link>
@@ -260,16 +263,28 @@
         <f7-tab id="tabprodotti-2" class="page-content tabs-ance">
           <f7-block id="prodotti-convenzioni">
             <f7-block id="convenzioni-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
-            <div class="timeline" id="convenzioni-timeline"></div>
           </f7-block>
         </f7-tab>
         <f7-tab id="tabprodotti-3" class="page-content tabs-ance">
           <f7-block id="prodotti-servizi">
             <f7-block id="servizi-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
-            <div class="timeline" id="servizi-timeline"></div>
           </f7-block>
         </f7-tab>
       </f7-tabs>
+    </f7-page>
+  </template>
+
+  <!-- Dettaglio Guide Page Template -->
+  <template id="page-guidedetail">
+    <f7-page>
+      <f7-navbar title="Dettaglio" back-link="Indietro"></f7-navbar>
+      <div strong class="text-align-center" id="guidedetail-container">
+        <!-- <img src="img/logo_ance_blue.png" /> -->
+        <f7-block class="row text-align-center" id="guidedetail-loader">
+        <f7-col>
+          <f7-preloader color="blue"></f7-preloader>
+        </f7-col>
+      </div>
     </f7-page>
   </template>
 
@@ -424,6 +439,7 @@
   <script src='js/stampa.js'></script>
   <script src='js/news.js'></script>
   <script src='js/analisi.js'></script>
+  <script src='js/prodotti.js'></script>
 
 </body>
 </html>

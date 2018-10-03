@@ -41,6 +41,9 @@ Vue.component('page-analisi', {
 Vue.component('page-analisidetail', {
   template: '#page-analisidetail'
 });
+Vue.component('page-guidedetail', {
+  template: '#page-guidedetail'
+});
 Vue.component('page-not-found', {
   template: '#page-not-found'
 });
@@ -138,12 +141,19 @@ new Vue({
             component: 'page-prodotti',
             on: {
               pageAfterIn: function openProdotti (e, page) {
-                // Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetChiSiamo', { foo:'bar', id:5 }, function (data) {
-                // Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetChiSiamo', {}, function (data) {
-                //   $$('#prodotti-container').html(data.Abstract);
-                // });
-
-                console.log('Prodotti');
+                getGuide(e,page);
+                getConvenzioni(e,page);
+                getServizi(e,page);
+              },
+            }
+          },
+          {
+            path: '/guidedetail/guideid/:guideId',
+            component: 'page-guidedetail',
+            on: {
+              pageAfterIn: function openGuidedetail (e, page) {
+                var analisiID = page.route.params.guideId;
+                getGuideDetail(e,page,analisiID);
               },
             }
           },
