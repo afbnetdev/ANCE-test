@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ancebetaapp.com" version="1.0.32" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Ance Beta 0.1</name>
+<widget id="com.anceapp.com" version="1.0.32" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>ANCE App</name>
     <description>
-        Ance news dispatcher beta version
+        Ance news dispatcher
     </description>
-    <author email="bluemix@afbnet.it" href="http://www.afbnet.it">
+    <author email="l.lombardi@afbnet.it" href="http://www.afbnet.it">
         AFB Net - A Vargroup company
     </author>
     <content src="index.html" />
