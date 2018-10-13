@@ -17,29 +17,32 @@ Vue.component('page-vertici', {
 Vue.component('page-organi', {
   template: '#page-organi'
 });
-Vue.component('page-stampa', {
-  template: '#page-stampa'
+Vue.component('page-media', {
+  template: '#page-media'
 });
 Vue.component('page-dossierdetail',{
   template: '#page-dossierdetail'
 });
-Vue.component('page-agenda', {
-  template: '#page-agenda'
+Vue.component('page-eventi', {
+  template: '#page-eventi'
 });
-// Vue.component('page-agendadetail', {
-//   template: '#page-agendadetail'
+// Vue.component('page-eventidetail', {
+//   template: '#page-eventidetail'
 // });
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
 });
-Vue.component('page-prodotti', {
-  template: '#page-prodotti'
+Vue.component('page-per-le-imprese', {
+  template: '#page-imprese'
 });
-Vue.component('page-analisi', {
-  template: '#page-analisi'
+Vue.component('page-settore', {
+  template: '#page-settore'
 });
 Vue.component('page-analisidetail', {
   template: '#page-analisidetail'
+});
+Vue.component('page-posizionidetail', {
+  template: '#page-posizionidetail'
 });
 Vue.component('page-guidedetail', {
   template: '#page-guidedetail'
@@ -137,13 +140,13 @@ new Vue({
             }
           },
           {
-            path: '/prodotti/',
-            component: 'page-prodotti',
+            path: '/per-le-imprese/',
+            component: 'page-per-le-imprese',
             on: {
-              pageAfterIn: function openProdotti (e, page) {
+              pageAfterIn: function (e, page) {
                 getGuide(e,page);
                 getConvenzioni(e,page);
-                getServizi(e,page);
+                getProdotti(e,page);
               },
             }
           },
@@ -152,17 +155,28 @@ new Vue({
             component: 'page-guidedetail',
             on: {
               pageAfterIn: function openGuidedetail (e, page) {
-                var analisiID = page.route.params.guideId;
-                getGuideDetail(e,page,analisiID);
+                var guideID = page.route.params.guideId;
+                getGuideDetail(e,page,guideID);
               },
             }
           },
           {
-            path: '/analisi/',
-            component: 'page-analisi',
+            path: '/settore/',
+            component: 'page-settore',
             on: {
               pageAfterIn: function (e, page) {
                 getAnalisi(e,page);
+                getPosizioni(e,page);
+              },
+            }
+          },
+          {
+            path: '/posizionidetail/posizioniid/:posizioniId',
+            component: 'page-posizionidetail',
+            on: {
+              pageAfterIn: function openAbout (e, page) {
+                var posizioniID = page.route.params.posizioniId;
+                getPosizioniDetail(e,page,posizioniID);
               },
             }
           },
@@ -177,8 +191,8 @@ new Vue({
             }
           },
           {
-            path: '/stampa/',
-            component: 'page-stampa',
+            path: '/media/',
+            component: 'page-media',
             on: {
               pageAfterIn: function openRassegna (e, page) {
                 getRassegna(e,page);
@@ -198,26 +212,23 @@ new Vue({
             }
           },
           {
-            path: '/agenda/',
-            component: 'page-agenda',
+            path: '/eventi/',
+            component: 'page-eventi',
             on: {
               pageAfterIn: function(e,page){
-                openAgenda (e, page);
+                getEventi (e, page);
               }
             },
           },
           {
-            path: '/agendadetail/id/:id',
-            component: 'page-agendadetail',
+            path: '/eventidetail/id/:id',
+            component: 'page-eventidetail',
             on: {
               pageAfterIn: function(e,page){
-                agendaDetail (e, page);
+                var eventId = page.route.params.id;
+                getEventiDetail (e, page, eventId);
               }
             },
-          },
-          {
-            path: '/dynamic-route/blog/:blogId/post/:postId/',
-            component: 'page-dynamic-routing'
           },
           {
             path: '(.*)',
