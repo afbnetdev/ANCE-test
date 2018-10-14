@@ -20,6 +20,9 @@ Vue.component('page-organi', {
 Vue.component('page-media', {
   template: '#page-media'
 });
+Vue.component('page-mediadetail', {
+  template: '#page-mediadetail'
+});
 Vue.component('page-dossierdetail',{
   template: '#page-dossierdetail'
 });
@@ -197,6 +200,16 @@ new Vue({
               pageAfterIn: function openRassegna (e, page) {
                 getRassegna(e,page);
                 getDossierList(e,page);
+              },
+            }
+          },
+          {
+            path: '/mediadetail/mediaid/:mediaid',
+            component: 'page-mediadetail',
+            on: {
+              pageAfterIn: function openRassegna (e, page) {
+                var mediaid = page.route.params.mediaid;
+                getMediaDetail(e,page,mediaid);
               },
             }
           },
