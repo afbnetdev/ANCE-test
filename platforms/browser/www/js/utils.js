@@ -74,3 +74,6 @@ function newsDetail(data,guideID){
   newsItem += '</div>';
   return newsItem;
 }
+function inAppBrowser(url){
+  var ref = window.open(url, '_blank', 'location=no');
+}
