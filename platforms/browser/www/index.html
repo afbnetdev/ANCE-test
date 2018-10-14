@@ -244,7 +244,7 @@
   <template id="page-imprese">
     <f7-page>
       <f7-navbar>
-        <f7-nav-left><f7-link href="/home/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Per le imprese</f7-nav-title>
       </f7-navbar>
       <f7-toolbar tabbar>
@@ -290,7 +290,7 @@
   <template id="page-settore">
     <f7-page>
       <f7-navbar>
-        <f7-nav-left><f7-link href="/home/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Per il settore</f7-nav-title>
       </f7-navbar>
       <f7-toolbar tabbar>
@@ -342,7 +342,7 @@
   <template id="page-media">
     <f7-page>
       <f7-navbar>
-        <f7-nav-left><f7-link href="/home/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Media</f7-nav-title>
       </f7-navbar>
       <f7-toolbar tabbar>
@@ -367,6 +367,23 @@
           <div class="list" id="list-dossier"></div>
         </f7-tab>
       </f7-tabs>
+    </f7-page>
+  </template>
+
+  <!-- media Page Template -->
+  <template id="page-mediadetail">
+    <f7-page>
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/media/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Media Dettaglio</f7-nav-title>
+      </f7-navbar>
+      <div strong class="text-align-center" id="mediadetail-container">
+        <!-- <img src="img/logo_ance_blue.png" /> -->
+        <f7-block class="row text-align-center" id="mediadetail-loader">
+        <f7-col>
+          <f7-preloader color="blue"></f7-preloader>
+        </f7-col>
+      </div>
     </f7-page>
   </template>
 
@@ -402,7 +419,7 @@
   <template id="page-eventi">
     <f7-page>
       <f7-navbar>
-        <f7-nav-left><f7-link href="/home/"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Eventi</f7-nav-title>
       </f7-navbar>
       <f7-block strong id="eventi-container" class="text-align-center">
