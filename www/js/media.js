@@ -23,9 +23,7 @@ function getMediaDetail(e,page,url){
     var body = "<body>";
     var bodyEnd = "</body>";
     var res = data.substring(data.indexOf(body)+body.length,data.indexOf(bodyEnd));
-
     var defRes = res.replace(/<a href/gi, '<a class="link external" target="_system" href').replace(/<table/gi,'<div class="data-table"><table').replace(/<\/table>/gi,'</table></div>');
-
     $$('#mediadetail-loader').remove();
     $$('#mediadetail-container').html(defRes);
   });
