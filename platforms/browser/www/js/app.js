@@ -58,6 +58,7 @@ Vue.component('page-home', {
 });
 
 var $$ = Dom7;
+var endPointUrl = 'http://serviceapp.ance.it:26031/ServiceAppAnce.svc';
 // var app = new Framework7();
 // Init App
 new Vue({
@@ -100,7 +101,7 @@ new Vue({
             on: {
               pageAfterIn: function openAbout (e, page) {
                 // Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetChiSiamo', { foo:'bar', id:5 }, function (data) {
-                Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetChiSiamo', {}, function (data) {
+                Framework7.request.json(endPointUrl+'/SistemaAnce/GetChiSiamo', {}, function (data) {
                   $$('#about-container').html(data.Abstract);
                 });
               },

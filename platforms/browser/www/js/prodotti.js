@@ -1,5 +1,5 @@
 function getGuide(e,page){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/PerLeImprese/Get/Guide', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/PerLeImprese/Get/Guide', {}, function (data) {
     var listitems = '';
     var url = '/guidedetail/guideid/';
     for(i=0;i<data.length;i++){
@@ -10,7 +10,7 @@ function getGuide(e,page){
   });
 }
 function getGuideDetail(e,page,iid){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/PerLeImprese/Get/Guide', {}, function (data) {
+  Framework7.request.json(endPointUrl+'PerLeImprese/Get/Guide', {}, function (data) {
     newsItem = newsDetail(data,iid);
     $$('#guidedetail-loader').remove();
     var news="";
@@ -18,7 +18,7 @@ function getGuideDetail(e,page,iid){
   });
 }
 function getConvenzioni(e,page){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/PerLeImprese/Get/Convenzioni', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/PerLeImprese/Get/Convenzioni', {}, function (data) {
     var listitems = '';
     for(i=0;i<data.length;i++){
       listitems += newsBadge(data[i], '');
@@ -28,7 +28,7 @@ function getConvenzioni(e,page){
   });
 }
 function getProdotti(e,page){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/PerLeImprese/Get/Prodotti', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/PerLeImprese/Get/Prodotti', {}, function (data) {
     var listitems = '';
     for(i=0;i<data.length;i++){
       listitems += newsBadge(data[i], '');

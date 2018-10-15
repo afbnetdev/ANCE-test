@@ -1,5 +1,5 @@
 function openVertici (e, page) {
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetVertici', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/SistemaAnce/GetVertici', {}, function (data) {
     var dir = '';
     var vdir1 = '';
     var vdir2 = '';
@@ -54,7 +54,7 @@ function openVertici (e, page) {
   });
 };
 function openOrgani (e, page) {
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetOrganiAnce', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/SistemaAnce/GetOrganiAnce', {}, function (data) {
     //$$('#story-container').html(data);
     //console.log(data[0]);
     var governance='';
@@ -88,15 +88,14 @@ function openOrgani (e, page) {
   });
 };
 function openStatuto (e, page) {
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetLoStatuto', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/SistemaAnce/GetLoStatuto', {}, function (data) {
     $$('#statuto-loader').remove();
     $$('#statuto-container').html('<a href="http://'+data+'" class="link external" target="_system"><img src="img/file-pdf-box.png" /></a><p>Visualizza lo statuto</p>');
     // $$('#statuto-container').html('<img src="img/file-pdf-box.png" /><p>Visualizza lo statuto</p>');
   });
 };
 function openStory (e, page) {
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/SistemaAnce/GetStoria', {}, function (data) {
-    //$$('#story-container').html(data);
+  Framework7.request.json(endPointUrl+'/SistemaAnce/GetStoria', {}, function (data) {    //$$('#story-container').html(data);
     // console.log(data[0]);
     var presidenti='';
     var direttori='';

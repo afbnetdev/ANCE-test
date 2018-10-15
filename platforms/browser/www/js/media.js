@@ -1,5 +1,5 @@
 function getRassegna(e, page){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Media/GetRassegna', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/Media/GetRassegna', {}, function (data) {
     var listitems = '';
     for(i=0;i<data.length;i++){
       var day = data[i].DataRassegna.substring(8,10);
@@ -29,7 +29,7 @@ function getMediaDetail(e,page,url){
   });
 }
 function getDossierList(e, page){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Media/GetDossier', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/Media/GetDossier', {}, function (data) {
     var listitems="";
     var url = '/dossierdetail/dossierid/';
     for(i=0;i<data.length;i++){
@@ -57,7 +57,7 @@ function getDossierList(e, page){
   // console.log(output);
 }
 function getDossierDetail(e,page,id){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Stampa/GetDossier', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/Stampa/GetDossier', {}, function (data) {
     newsItem = newsDetail(data,id);
     $$('#dossierdetail-loader').remove();
     $$('#dossierdetail-container').html(newsItem);
