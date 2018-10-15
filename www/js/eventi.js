@@ -1,5 +1,5 @@
 function getEventi(e,page){
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Eventi/GetEventi', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/Eventi/GetEventi', {}, function (data) {
     var listitems="";
     // var url = '/eventidetail/eventiid/';
     for(i=0;i<data.length;i++){

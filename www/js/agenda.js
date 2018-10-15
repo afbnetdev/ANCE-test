@@ -1,6 +1,6 @@
 function openAgenda(e,page){
   // var app = new Framework7();
-  Framework7.request.json('http://serviceapp.ance.it:26031/ServiceAppAnce.svc/Agenda/GetAgenda', {}, function (data) {
+  Framework7.request.json(endPointUrl+'/Agenda/GetAgenda', {}, function (data) {
     // console.log($$);
     $$('#agenda-loader').remove();
     var eventsArray = [];

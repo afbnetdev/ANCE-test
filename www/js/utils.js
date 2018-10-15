@@ -4,25 +4,27 @@ function newsBadge(data, url){
   var year = (data.DataDocumento) ? data.DataDocumento.substring(0,4) : '0000';
   var compleDate = day+' '+month+' '+year;
   var item = '';
-  if(url!=""){
+  if(data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!=""){
+    item += '<a href="'+data.LinkEsternoAnteprima+'" class="link external" target="_system">';
+  }
+  else if(url!=""){
     item += '<a href="'+url+'" class="link">';
   }
   item += '<div class="card demo-card-header-pic">';
   if(data.LinkImgIntestazione && data.LinkImgIntestazione !=""){
     item += '<div style="background-image:url(http://'+data.LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
   }
+  item += '<div class="card-footer"><span class="text-align-right">'+data.Titoletto+'</span></div>';
   item += '<div class="card-header text-align-left"><strong>'+data.TitoloAnteprima+'</strong></div>';
   item += '<div class="card-content card-content-padding txt-black text-align-justify">';
   if(data.Abstract && data.Abstract!=''){
     item += '<p class="txt-black">'+data.Abstract+'</p>';
   }
-  if(data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!=""){
-    item += '<p><a href="'+data.LinkEsternoAnteprima+'" class="link external" target="_system">Anteprima</a></p>';
-  }
+
   item += '</div>';
-  item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '<span class="text-align-right">'+data.Titoletto+'</span></div>';
+  item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
   item += '</div>';
-  if(url!=""){
+  if((data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!="") || url!=""){
     item += '</a>';
   }
   return item;
