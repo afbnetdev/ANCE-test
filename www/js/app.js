@@ -258,7 +258,7 @@ document.addEventListener('deviceready', () => {
   if ("Notification" in window) {
     Notification.requestPermission(function (permission) {
       // If the user accepts, let's create a notification
-      setTimeout(function(){
+      setInterval(function(){
         if (permission === 'granted') {
           var notification = new Notification("My title", {
                tag: 'message1',
