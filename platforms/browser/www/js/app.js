@@ -254,51 +254,18 @@ new Vue({
   },
 });
 document.addEventListener('deviceready', () => {
-  //function getPushReady() {
-        console.log('calling push init');
-        var push = PushNotification.init({
-            "android": {
-                "senderID": "hadouken"
-            },
-            "browser": {},
-            "ios": {
-                "sound": true,
-                "vibration": true,
-                "badge": true
-            },
-            "windows": {}
+  if ("Notification" in window) {
+    Notification.requestPermission(function (permission) {
+      // If the user accepts, let’s create a notification
+      if (permission === 'granted') {
+        var notification = new Notification("My title", {
+             tag: 'message1',
+             body: "My body"
         });
-        console.log('after init');
-        push.on('registration', function(data) {
-            console.log('registration event: ' + data.registrationId);
-
-            var oldRegId = localStorage.getItem('registrationId');
-            if (oldRegId !== data.registrationId) {
-                // Save new registration ID
-                localStorage.setItem('registrationId', data.registrationId);
-                // Post registrationId to your app server as the value has changed
-            }
-
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
-
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
-        });
-
-        push.on('error', function(e) {
-            console.log("push error = " + e.message);
-        });
-
-        push.on('notification', function(data) {
-            console.log('notification event');
-            navigator.notification.alert(
-                data.message,         // message
-                null,                 // callback
-                data.title,           // title
-                'Ok'                  // buttonName
-            );
-          });
-    //}
+        notification.onshow  = function() { console.log('show'); };
+        notification.onclose = function() { console.log('close'); };
+        notification.onclick = function() { console.log('click'); };
+      }
+    });
+  }
 });
