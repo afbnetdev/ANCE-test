@@ -79,3 +79,29 @@ function newsDetail(data,guideID){
 function inAppBrowser(url){
   var ref = window.open(url, '_blank', 'location=no');
 }
+/**
+  2018-09-15
+  Lorenzo Lombardi l.lombardi@afbnet.it
+  Numeric months to Italian
+  @integer num : numeric expression of the month
+  @integer len: 0 (default) for short version, 1 for long, 2 return fullist
+*/
+function getMonths(num, len=0){
+  //var month = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  var month = ['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  var longmonth = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  var m = '';
+  switch(len){
+    case 0:
+    m = month[Math.floor(num)];
+    break;
+    case 1:
+    m = longmonth[Math.floor(num)];
+    break;
+    case 2:
+    longmonth.shift();
+    m = longmonth;
+    break;
+  }
+  return m;
+}

@@ -58,7 +58,7 @@ Vue.component('page-home', {
 });
 
 var $$ = Dom7;
-var endPointUrl = 'http://serviceapp.ance.it:26031/ServiceAppAnce.svc';
+var endPointUrl = 'http://serviceappsvil.ance.it:26031/ServiceAppAnce.svc';
 // var app = new Framework7();
 // Init App
 new Vue({
@@ -253,29 +253,52 @@ new Vue({
     }
   },
 });
-/**
-  2018-09-15
-  Lorenzo Lombardi l.lombardi@afbnet.it
-  Numeric months to Italian
-  @integer num : numeric expression of the month
-  @integer len: 0 (default) for short version, 1 for long, 2 return fullist
-*/
-function getMonths(num, len=0){
-  //var month = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-  var month = ['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
-  var longmonth = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-  var m = '';
-  switch(len){
-    case 0:
-    m = month[Math.floor(num)];
-    break;
-    case 1:
-    m = longmonth[Math.floor(num)];
-    break;
-    case 2:
-    longmonth.shift();
-    m = longmonth;
-    break;
-  }
-  return m;
-}
+document.addEventListener('deviceready', () => {
+  //function getPushReady() {
+        console.log('calling push init');
+        var push = PushNotification.init({
+            "android": {
+                "senderID": "hadouken"
+            },
+            "browser": {},
+            "ios": {
+                "sound": true,
+                "vibration": true,
+                "badge": true
+            },
+            "windows": {}
+        });
+        console.log('after init');
+        push.on('registration', function(data) {
+            console.log('registration event: ' + data.registrationId);
+
+            var oldRegId = localStorage.getItem('registrationId');
+            if (oldRegId !== data.registrationId) {
+                // Save new registration ID
+                localStorage.setItem('registrationId', data.registrationId);
+                // Post registrationId to your app server as the value has changed
+            }
+
+            var parentElement = document.getElementById('registration');
+            var listeningElement = parentElement.querySelector('.waiting');
+            var receivedElement = parentElement.querySelector('.received');
+
+            listeningElement.setAttribute('style', 'display:none;');
+            receivedElement.setAttribute('style', 'display:block;');
+        });
+
+        push.on('error', function(e) {
+            console.log("push error = " + e.message);
+        });
+
+        push.on('notification', function(data) {
+            console.log('notification event');
+            navigator.notification.alert(
+                data.message,         // message
+                null,                 // callback
+                data.title,           // title
+                'Ok'                  // buttonName
+            );
+          });
+    //}
+});

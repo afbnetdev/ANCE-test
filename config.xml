@@ -52,6 +52,7 @@
         <preference name="StatusBarBackgroundColor" value="#000000" />
     </platform>
     <preference name="android-build-tool" value="gradle" />
+    <engine name="browser" spec="^5.0.4" />
     <plugin name="cordova-plugin-certificates" spec="0.6.4" />
     <plugin name="cordova-plugin-console" spec="1.0.7" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
@@ -60,10 +61,10 @@
     <plugin name="cordova-plugin-file-opener2" spec="~2.0.15" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.2.0" />
-    <plugin name="cordova-plugin-camera" spec="^2.4.1">
-        <param name="CAMERA_USAGE_DESCRIPTION" value="Take Photo" />
-        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Take Photo Library" />
-    </plugin>
+    <plugin name="cordova-plugin-camera" spec="^2.4.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <plugin name="cordova-plugin-calendar" />
+    <plugin name="cordova-plugin-calendar" spec="git+https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git" />
+    <plugin name="phonegap-plugin-push" spec="2.2.3">
+        <variable name="SENDER_ID" value="123456789" />
+    </plugin>
 </widget>

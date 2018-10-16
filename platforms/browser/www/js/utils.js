@@ -4,25 +4,27 @@ function newsBadge(data, url){
   var year = (data.DataDocumento) ? data.DataDocumento.substring(0,4) : '0000';
   var compleDate = day+' '+month+' '+year;
   var item = '';
-  if(url!=""){
+  if(data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!=""){
+    item += '<a href="'+data.LinkEsternoAnteprima+'" class="link external" target="_system">';
+  }
+  else if(url!=""){
     item += '<a href="'+url+'" class="link">';
   }
   item += '<div class="card demo-card-header-pic">';
   if(data.LinkImgIntestazione && data.LinkImgIntestazione !=""){
     item += '<div style="background-image:url(http://'+data.LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
   }
+  item += '<div class="card-footer"><span class="text-align-right">'+data.Titoletto+'</span></div>';
   item += '<div class="card-header text-align-left"><strong>'+data.TitoloAnteprima+'</strong></div>';
   item += '<div class="card-content card-content-padding txt-black text-align-justify">';
   if(data.Abstract && data.Abstract!=''){
     item += '<p class="txt-black">'+data.Abstract+'</p>';
   }
-  if(data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!=""){
-    item += '<p><a href="'+data.LinkEsternoAnteprima+'" class="link external" target="_system">Anteprima</a></p>';
-  }
+
   item += '</div>';
-  item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '<span class="text-align-right">'+data.Titoletto+'</span></div>';
+  item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
   item += '</div>';
-  if(url!=""){
+  if((data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!="") || url!=""){
     item += '</a>';
   }
   return item;
@@ -76,4 +78,30 @@ function newsDetail(data,guideID){
 }
 function inAppBrowser(url){
   var ref = window.open(url, '_blank', 'location=no');
+}
+/**
+  2018-09-15
+  Lorenzo Lombardi l.lombardi@afbnet.it
+  Numeric months to Italian
+  @integer num : numeric expression of the month
+  @integer len: 0 (default) for short version, 1 for long, 2 return fullist
+*/
+function getMonths(num, len=0){
+  //var month = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  var month = ['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  var longmonth = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  var m = '';
+  switch(len){
+    case 0:
+    m = month[Math.floor(num)];
+    break;
+    case 1:
+    m = longmonth[Math.floor(num)];
+    break;
+    case 2:
+    longmonth.shift();
+    m = longmonth;
+    break;
+  }
+  return m;
 }

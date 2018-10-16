@@ -48,7 +48,8 @@
     "cordova-plugin-file-opener2": "~2.0.15",
     "cordova-plugin-keyboard": "^1.2.0",
     "cordova-plugin-statusbar": "~1.0.1",
-    "cordova-plugin-whitelist": "~1.2.0"
+    "cordova-plugin-whitelist": "~1.2.0",
+    "phonegap-plugin-push": "2.2.3"
   },
   "cordova": {
     "plugins": {
@@ -62,8 +63,13 @@
       "cordova-plugin-keyboard": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-calendar": {}
+      "cordova-plugin-calendar": {},
+      "phonegap-plugin-push": {
+        "SENDER_ID": "123456789"
+      }
     },
-    "platforms": []
+    "platforms": [
+      "browser"
+    ]
   }
 }

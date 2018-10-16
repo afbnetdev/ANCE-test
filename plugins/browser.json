@@ -1,49 +1,52 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-calendar": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
     },
-    "installed_plugins": {
-        "cordova-plugin-certificates": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-file-opener2": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        },
-        "cordova-plugin-calendar": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        }
+    "cordova-plugin-certificates": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ancebetaapp.com"
-        }
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "cordova-plugin-file-opener2": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "cordova-plugin-keyboard": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    },
+    "phonegap-plugin-push": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
     }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.ancebetaapp.com"
+    }
+  }
 }
