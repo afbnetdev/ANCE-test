@@ -2,7 +2,7 @@ Node version: v8.12.0
 
 Cordova version: 8.0.0
 
-Config.xml file: 
+Config.xml file:
 
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ancebetaapp.com" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
@@ -27,7 +27,7 @@ Config.xml file:
         <icon density="xhdpi" src="resources/android/icon/xhdpi.png" />
         <icon density="xxhdpi" src="resources/android/icon/xxhdpi.png" />
         <icon density="xxxhdpi" src="resources/android/icon/xxxhdpi.png" />
-        <preference name="android-minSdkVersion" value="14" />
+        <preference name="android-minSdkVersion" value="16" />
         <preference name="android-windowSoftInputMode" value="adjustPan" />
         <allow-intent href="market:*" />
     </platform>
@@ -79,9 +79,6 @@ Config.xml file:
 </widget>
 
 
-Plugins: 
+Plugins:
 
 cordova-plugin-calendar,cordova-plugin-camera,cordova-plugin-certificates,cordova-plugin-compat,cordova-plugin-console,cordova-plugin-device,cordova-plugin-file,cordova-plugin-file-opener2,cordova-plugin-inappbrowser,cordova-plugin-keyboard,cordova-plugin-statusbar,cordova-plugin-whitelist
-
-
-
