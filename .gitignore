@@ -38,3 +38,5 @@ jspm_packages
 
 # IDE specific ignore
 .idea
+
+config_bkp.xml

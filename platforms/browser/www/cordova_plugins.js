@@ -285,6 +285,36 @@ module.exports = [
         "clobbers": [
             "Notification"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+        "id": "cordova-plugin-local-notification.LocalNotification",
+        "pluginId": "cordova-plugin-local-notification",
+        "clobbers": [
+            "cordova.plugins.notification.local"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-badge/www/badge.js",
+        "id": "cordova-plugin-badge.Badge",
+        "pluginId": "cordova-plugin-badge",
+        "clobbers": [
+            "cordova.plugins.notification.badge"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-badge/src/browser/favico.min.js",
+        "id": "cordova-plugin-badge.Badge.Favico",
+        "pluginId": "cordova-plugin-badge",
+        "clobbers": [
+            "cordova.plugins.notification.badge.Favico"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-badge/src/browser/BadgeProxy.js",
+        "id": "cordova-plugin-badge.Badge.Proxy",
+        "pluginId": "cordova-plugin-badge",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -302,7 +332,9 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-statusbar": "1.0.1",
     "cordova-plugin-calendar": "5.1.2",
-    "phonegap-plugin-local-notification": "1.0.1"
+    "phonegap-plugin-local-notification": "1.0.1",
+    "cordova-plugin-local-notification": "0.9.0-beta.3",
+    "cordova-plugin-badge": "0.8.7"
 }
 // BOTTOM OF METADATA
 });
