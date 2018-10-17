@@ -257,13 +257,20 @@ new Vue({
 document.addEventListener('deviceready', function () {
     // cordova.plugins.notification.local is now available
     cordova.plugins.notification.local.hasPermission(function (granted) {
-      alert('Permission ' + granted);
+      //alert('Permission ' + granted);
+      if(granted){
+        alert('ok, grant');
+        cordova.plugins.notification.local.schedule({
+            title: 'My first notification',
+            text: 'Thats pretty easy...',
+            foreground: true
+        });
+      }
   });
   // cordova.plugins.notification.local.schedule({
   //   title: 'Design team meeting',
   //   trigger: { every: 'day', count: 5 }
   // });
-  alert('hadouken');
 }, false);
 // document.addEventListener('deviceready', () => {
   // if ("Notification" in window) {
