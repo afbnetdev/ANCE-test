@@ -270,6 +270,12 @@ document.addEventListener('deviceready', function () {
             { id: 2, title: 'My second notification' },
             { id: 1, title: 'My third notification with same id' }
         ]);
+
+        setTimeout(function(){
+          cordova.plugins.notification.local.schedule([
+              { id: 1, title: 'My fourth notification with same id #1' }
+          ]);
+        },10000);
       }
   });
 }, false);
