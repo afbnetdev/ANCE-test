@@ -254,11 +254,18 @@ new Vue({
   },
 });
 
-document.addEventListener('deviceready', () => {
-  cordova.plugins.notification.local.schedule({
-            title: 'Design team meeting',
-            trigger: { every: 'day', count: 5 }
-        });
+document.addEventListener('deviceready', function () {
+    // cordova.plugins.notification.local is now available
+    cordova.plugins.notification.local.hasPermission(function (granted) {
+      alert('Permission ' + granted);
+  });
+  // cordova.plugins.notification.local.schedule({
+  //   title: 'Design team meeting',
+  //   trigger: { every: 'day', count: 5 }
+  // });
+  alert('hadouken');
+}, false);
+// document.addEventListener('deviceready', () => {
   // if ("Notification" in window) {
   //   Notification.requestPermission(function (permission) {
   //     // If the user accepts, let's create a notification
@@ -275,4 +282,4 @@ document.addEventListener('deviceready', () => {
   //     },3000);
   //   });
   // }
-});
+// });
