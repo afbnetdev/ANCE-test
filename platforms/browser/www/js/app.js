@@ -255,7 +255,7 @@ new Vue({
 });
 
 document.addEventListener('deviceready', () => {
-  var a = cordova.plugins.notification.local.schedule({
+  cordova.plugins.notification.local.schedule({
             title: 'Design team meeting',
             trigger: { every: 'day', count: 5 }
         });
