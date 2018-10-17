@@ -260,33 +260,15 @@ document.addEventListener('deviceready', function () {
       //alert('Permission ' + granted);
       if(granted){
         alert('ok, grant');
-        cordova.plugins.notification.local.schedule({
-            title: 'My first notification',
-            text: 'Thats pretty easy...',
-            foreground: true
-        });
+        // cordova.plugins.notification.local.schedule({
+        //     title: 'My first notification',
+        //     text: 'Thats pretty easy...',
+        //     foreground: true
+        // });
+        cordova.plugins.notification.local.schedule([
+            { id: 1, title: 'My first notification' },
+            { id: 2, title: 'My second notification' }
+        ]);
       }
   });
-  // cordova.plugins.notification.local.schedule({
-  //   title: 'Design team meeting',
-  //   trigger: { every: 'day', count: 5 }
-  // });
 }, false);
-// document.addEventListener('deviceready', () => {
-  // if ("Notification" in window) {
-  //   Notification.requestPermission(function (permission) {
-  //     // If the user accepts, let's create a notification
-  //     setInterval(function(){
-  //       if (permission === 'granted') {
-  //         var notification = new Notification("My title", {
-  //              tag: 'message1',
-  //              body: "My body: " + Date.now()
-  //         });
-  //         notification.onshow  = function() { console.log('show'); };
-  //         notification.onclose = function() { console.log('close'); };
-  //         notification.onclick = function() { console.log('click'); };
-  //       }
-  //     },3000);
-  //   });
-  // }
-// });

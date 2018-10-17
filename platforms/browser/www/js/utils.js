@@ -22,7 +22,7 @@ function newsBadge(data, url){
   }
 
   item += '</div>';
-  item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
+  //item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
   item += '</div>';
   if((data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!="") || url!=""){
     item += '</a>';
@@ -30,7 +30,7 @@ function newsBadge(data, url){
   return item;
 }
 function newsDetail(data,guideID){
-  console.log(guideID);
+  // console.log(guideID);
   var newsItem = '';
   var intestazione = data[guideID].LinkImgIntestazione;
   var day = (data[guideID].DataDocumento) ? data[guideID].DataDocumento.substring(8,10) : '00';
