@@ -1,5 +1,6 @@
 function getSettings(){
-
+  var settings = '';
+  return settings;
 }
 function setSettings(){
 

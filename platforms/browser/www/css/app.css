@@ -15,9 +15,13 @@
 #home-container{
   margin: 10px 0 !important;
 }
-#eventi-container{
+#eventi-container,
+#settings-container{
   margin: 0px 0 !important;
   background-color: #f5f5f5 !important;
+}
+#settings-container form{
+  background-color: #ffffff !important;
 }
 #about-container{
   margin: 0px 0 !important;
