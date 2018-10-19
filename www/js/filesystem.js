@@ -6,7 +6,7 @@ function setTemporaryFile(fileName){
 }
 function setPersistentFile(fileName, fileContent){
   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-      // console.log('file system open: ' + fs.name);
+      // console.log('file system write: ' + fs.name);
       fs.root.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
           //console.log("fileEntry is file? => " + fileEntry.isFile.toString());
           //console.log(fileEntry);
@@ -16,7 +16,7 @@ function setPersistentFile(fileName, fileContent){
 }
 function getPersistentFile(fileName,localFn){
   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-      //console.log('file system open: ' + fs.name);
+      // console.log('file system open: ' +fileName+' -> '+ fs.name);
       fs.root.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
           readFile(fileEntry, localFn);
       }, onErrorReader);

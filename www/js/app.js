@@ -87,6 +87,7 @@ new Vue({
           },
           formAjaxSuccess: function(formEl, data, xhr){
             // console.log(data);
+            // console.log(formEl);
             var a = QueryStringToJSON('?'+data);
             setPersistentFile('app-settings.txt', JSON.stringify(a));
           },
@@ -96,6 +97,51 @@ new Vue({
           {
             path: '/home/',
             component: 'page-home',
+          },
+          {
+            path: '/settings/',
+            component: 'page-settings',
+            on: {
+
+              pageAfterIn: function(e,page){
+                var fileContent = '';
+                getPersistentFile('app-settings.txt', function(data){
+                  fileContent = data;
+                  // console.log(fileContent);
+                  obj = JSON.parse(data);
+                  var n_enable = page.app.toggle.get('#n_enable');
+                  var n_vibrate = page.app.toggle.get('#n_vibrate');
+                  var n_interval = page.app.smartSelect.get('#n_interval a');
+                  var n_frequency = page.app.smartSelect.get('#n_frequency a');
+                  var n_color = page.app.smartSelect.get('#n_color a');
+                  if((!obj["n_enable[]"] && n_enable.checked) || (obj["n_enable[]"] && obj["n_enable[]"]=='on' && !n_enable.checked ) ){
+                    n_enable.toggle();
+                  }
+                  if((!obj["n_vibrate[]"] && n_vibrate.checked) || (obj["n_vibrate[]"] && obj["n_vibrate[]"]=='on' && !n_vibrate.checked ) ){
+                    n_vibrate.toggle();
+                  }
+                  //change smart select values
+                  $$('select[name="n_interval"] option[value="'+obj["n_interval"]+'"]').prop('selected',true);
+                  $$('select[name="n_frequency"] option[value="'+obj["n_frequency"]+'"]').prop('selected',true);
+                  $$('select[name="n_color"] option[value="'+obj["n_color"]+'"]').prop('selected',true);
+                  //change displayed value
+                  n_interval.setValue(obj["n_interval"]);
+                  n_frequency.setValue(obj["n_frequency"]);
+                  n_color.setValue(obj["n_color"]);
+                  //change radio button value on radio list popups
+                  n_interval.on('open', function(){
+                    var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_interval"]+'"]').prop('checked',true);
+                  });
+                  n_frequency.on('open', function(){
+                    var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_frequency"]+'"]').prop('checked',true);
+                  });
+                  n_color.on('open', function(){
+                    var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_color"]+'"]').prop('checked',true);
+                  });
+
+                });
+              }
+            },
           },
           {
             path: '/newsdetail/newsid/:newsId',
@@ -253,50 +299,6 @@ new Vue({
               pageAfterIn: function(e,page){
                 var eventId = page.route.params.id;
                 getEventiDetail (e, page, eventId);
-              }
-            },
-          },
-          {
-            path: '/settings/',
-            component: 'page-settings',
-            on: {
-              pageAfterIn: function(e,page){
-                var fileContent = '';
-                getPersistentFile('app-settings.txt', function(data){
-                  fileContent = data;
-                  // console.log(fileContent);
-                  obj = JSON.parse(data);
-                  var n_enable = page.app.toggle.get('#n_enable');
-                  var n_vibrate = page.app.toggle.get('#n_vibrate');
-                  var n_interval = page.app.smartSelect.get('#n_interval a');
-                  var n_frequency = page.app.smartSelect.get('#n_frequency a');
-                  var n_color = page.app.smartSelect.get('#n_color a');
-                  if((!obj["n_enable[]"] && n_enable.checked) || (obj["n_enable[]"] && obj["n_enable[]"]=='on' && !n_enable.checked ) ){
-                    n_enable.toggle();
-                  }
-                  if((!obj["n_vibrate[]"] && n_vibrate.checked) || (obj["n_vibrate[]"] && obj["n_vibrate[]"]=='on' && !n_vibrate.checked ) ){
-                    n_vibrate.toggle();
-                  }
-                  //change smart select values
-                  $$('select[name="n_interval"] option[value="'+obj["n_interval"]+'"]').prop('selected',true);
-                  $$('select[name="n_frequency"] option[value="'+obj["n_frequency"]+'"]').prop('selected',true);
-                  $$('select[name="n_color"] option[value="'+obj["n_color"]+'"]').prop('selected',true);
-                  //change displayed value
-                  n_interval.setValue(obj["n_interval"]);
-                  n_frequency.setValue(obj["n_frequency"]);
-                  n_color.setValue(obj["n_color"]);
-                  //change radio button value on radio list popups
-                  n_interval.on('open', function(){
-                    var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_interval"]+'"]').prop('checked',true);
-                  });
-                  n_frequency.on('open', function(){
-                    var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_frequency"]+'"]').prop('checked',true);
-                  });
-                  n_color.on('open', function(){
-                    var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_color"]+'"]').prop('checked',true);
-                  });
-
-                });
               }
             },
           },
