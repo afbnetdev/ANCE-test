@@ -65,7 +65,8 @@ Vue.component('page-home', {
 
 var $$ = Dom7;
 var endPointUrl = 'http://serviceappsvil.ance.it:26031/ServiceAppAnce.svc';
-var fileSettings = 'notification-settings.txt';
+var fileSettings = 'app-settings.txt';
+var fileNewsQueue = 'app-news.txt';
 
 // Init App
 new Vue({
@@ -89,7 +90,10 @@ new Vue({
             // console.log(data);
             // console.log(formEl);
             var a = QueryStringToJSON('?'+data);
-            setPersistentFile('app-settings.txt', JSON.stringify(a));
+            //write settigns to a file
+            setPersistentFile(fileSettings, JSON.stringify(a));
+            //reset session items
+            setSettingsMemory(a);
           },
         },
         // App routes
@@ -102,16 +106,19 @@ new Vue({
             path: '/settings/',
             component: 'page-settings',
             on: {
-
               pageAfterIn: function(e,page){
                 var fileContent = '';
-                getPersistentFile('app-settings.txt', function(data){
+                getPersistentFile(fileSettings, function(data){
                   fileContent = data;
                   // console.log(fileContent);
-                  obj = JSON.parse(data);
+                  if(data==''){
+                    obj = getDefaultSettings();
+                  }
+                  else{
+                    obj = JSON.parse(data);
+                  }
                   var n_enable = page.app.toggle.get('#n_enable');
                   var n_vibrate = page.app.toggle.get('#n_vibrate');
-                  var n_interval = page.app.smartSelect.get('#n_interval a');
                   var n_frequency = page.app.smartSelect.get('#n_frequency a');
                   var n_color = page.app.smartSelect.get('#n_color a');
                   if((!obj["n_enable[]"] && n_enable.checked) || (obj["n_enable[]"] && obj["n_enable[]"]=='on' && !n_enable.checked ) ){
@@ -121,17 +128,12 @@ new Vue({
                     n_vibrate.toggle();
                   }
                   //change smart select values
-                  $$('select[name="n_interval"] option[value="'+obj["n_interval"]+'"]').prop('selected',true);
                   $$('select[name="n_frequency"] option[value="'+obj["n_frequency"]+'"]').prop('selected',true);
                   $$('select[name="n_color"] option[value="'+obj["n_color"]+'"]').prop('selected',true);
                   //change displayed value
-                  n_interval.setValue(obj["n_interval"]);
                   n_frequency.setValue(obj["n_frequency"]);
                   n_color.setValue(obj["n_color"]);
                   //change radio button value on radio list popups
-                  n_interval.on('open', function(){
-                    var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_interval"]+'"]').prop('checked',true);
-                  });
                   n_frequency.on('open', function(){
                     var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_frequency"]+'"]').prop('checked',true);
                   });
@@ -318,27 +320,85 @@ new Vue({
 //   console.log(data);
 // });
 document.addEventListener('deviceready', function () {
-    // cordova.plugins.notification.local is now available
-    cordova.plugins.notification.local.hasPermission(function (granted) {
-      //alert('Permission ' + granted);
-      if(granted){
-        alert('ok, grant');
-        // cordova.plugins.notification.local.schedule({
-        //     title: 'My first notification',
-        //     text: 'Thats pretty easy...',
-        //     foreground: true
-        // });
-        cordova.plugins.notification.local.schedule([
-            { id: 1, title: 'My first notification' },
-            { id: 2, title: 'My second notification' },
-            { id: 1, title: 'My third notification with same id' }
-        ]);
-
-        setTimeout(function(){
-          cordova.plugins.notification.local.schedule([
-              { id: 1, title: 'My fourth notification with same id #1' }
-          ]);
-        },10000);
-      }
+  //get app settings and set them to session
+  //if nothing has been written before I get the default settings
+  getPersistentFile(fileSettings, function(data){
+    var sets;
+    if(data==''){
+      sets = getDefaultSettings();
+    }
+    else{
+      sets = JSON.parse(data);
+    }
+    // console.log(sets);
+    //define session variable
+    setSettingsMemory(sets);
+    // b = window.sessionStorage.getItem('n_color');
+    // console.log(b);
   });
+  //notification scheduler
+  var readNews;
+  getPersistentFile(fileNewsQueue, function(data){
+    //get app settings
+    var readNews;
+    console.log('News already read');
+    console.log(data);
+    if(data!=''){
+      readNews = JSON.parse(data);
+    }
+    var newsOutput={};
+    //getNewsStream(newsOutput);
+    //get the actual news stream and filter trough the news to be notified
+    Framework7.request({
+      url: endPointUrl+'/Contenuti/GetAll',
+      async: true,
+      method: 'GET',
+      dataType: 'json',
+      success: function (data, status, xhr){
+        //output = data;
+        var counter = 0;
+        for(i=0;i<data.length;i++){
+          // console.log(data[i].FlagNotificaPush);
+          // output[i] = data[i];
+          if(data[i].FlagNotificaPush){
+            newsOutput[counter] = data[i];
+            counter = counter+1;
+          }
+        }
+  	    // console.log(data);
+        console.log("News to be notified:");
+        console.log(newsOutput);
+        var notifications = [];
+        //cheks wheter we have an array of read news since now
+        setNotificationEngine(newsOutput,readNews);
+      },
+    });
+    // console.log(newsOutput);
+    //getTimeOut(newsOutput,readNews);
+    // console.log(newsOutput);
+    // console.log(newsOutput);
+    // console.log(Object.getOwnPropertyNames(newsOutput));
+    // console.log(Object.keys(newsOutput));
+    //alert(newsOutput);
+    // var notifications = [];
+    // for (var k in newsOutput) {
+    //   console.log(k);
+    // //for(i=0;i<newsOutput.length;i++){
+    //   var notifyMe = true;
+    //   if (newsOutput.hasOwnProperty(k)) {
+    //     console.log(newsOutput[k]);
+    //     for(j=0;j<readNews.length;j++){
+    //       if( newsOutput[k].IdContentuno == readNews[j].newsId ){
+    //         notifyMe = false;
+    //       }
+    //     }
+    //   }
+    //   if(!notifyMe){
+    //     console.log('can can can');
+    //     notifications.push(newsOutput[k]);
+    //   }
+    // }
+  });
+  // cordova.plugins.notification.local is now available
+
 }, false);

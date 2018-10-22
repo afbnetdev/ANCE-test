@@ -1,4 +1,4 @@
-function setTemporaryFile(fileName){
+function setTemporaryFile(fileName, fileContent){
   window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
     // console.log('file system open: ' + fs.name);
     createFile(fs.root, fileName, false);

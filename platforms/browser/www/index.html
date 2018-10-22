@@ -464,7 +464,7 @@
   <template id="page-settings">
     <f7-page>
       <f7-navbar>
-        <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-left><f7-link href="/home/" reload-all page-name="home"><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Impostazioni</f7-nav-title>
       </f7-navbar>
         <form action="#" method="GET" class="form-ajax-submit-onchange">
@@ -472,14 +472,6 @@
             <f7-list-item>
               <span>Abilita notifiche</span>
               <f7-toggle checked color="blue" name="n_enable" id="n_enable" value="on"></f7-toggle>
-            </f7-list-item>
-            <f7-list-item title="Intervallo di aggiornamento" id="n_interval" smart-select :smart-select-params="{openIn: 'sheet', closeOnSelect: true, sheetCloseLinkText: 'Fatto'}">
-              <select name="n_interval">
-                <option value="Ogni 15 minuti">Ogni 15 minuti</option>
-                <option value="Ogni ora">Ogni ora</option>
-                <option value="Due volte al giorno">Due volte al giorno</option>
-                <option value="Una volta al giorno">Una volta al giorno</option>
-              </select>
             </f7-list-item>
             <f7-list-item title="Frequenza notifiche" id="n_frequency" smart-select :smart-select-params="{openIn: 'sheet', closeOnSelect: true, sheetCloseLinkText: 'Fatto'}">
               <select name="n_frequency">
@@ -495,9 +487,9 @@
             </f7-list-item>
             <f7-list-item title="Colore led notifica" id="n_color" smart-select :smart-select-params="{openIn: 'sheet', closeOnSelect: true, sheetCloseLinkText: 'Fatto'}">
               <select name="n_color">
+                <option value="Blu">Blu</option>
                 <option value="Bianco">Bianco</option>
                 <option value="Rosso">Rosso</option>
-                <option value="Blu">Blu</option>
                 <option value="Verde">Verde</option>
               </select>
             </f7-list-item>

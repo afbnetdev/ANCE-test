@@ -107,7 +107,6 @@ function getMonths(num, len=0){
 }
 function QueryStringToJSON(query) {
 	var pairs = query.slice(1).split('&');
-
 	var result = {};
 	pairs.forEach(function(pair) {
 		pair = pair.split('=');
