@@ -99,9 +99,9 @@ function setNotificationEngine(news,read){
     //trigger: { in: 1, unit: 'hour' }
   }
 
-  console.log(defNote);
+  // console.log(defNote);
   cordova.plugins.notification.local.hasPermission(function (granted) {
-    console.log(notifications);
+    // console.log(notifications);
     switch(color){
       case 'Rosso':
         setColor = '#ff0000';
@@ -122,11 +122,8 @@ function setNotificationEngine(news,read){
     });
     //alert('Permission ' + granted);
     if(granted){
-
       //alert('ok, grant');
-
       cordova.plugins.notification.local.schedule(defNote);
-
       // setTimeout(function(){
       //   cordova.plugins.notification.local.schedule([
       //       { id: 1, title: 'My fourth notification with same id #1' }

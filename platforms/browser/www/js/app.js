@@ -82,9 +82,14 @@ new Vue({
         removeElements: true,
         on: {
           pageInit: function (e,page){
-            // console.log('home init');
-            // console.log(page.route);
+            // console.log(page);
+            // console.log(e);
             getNews(e,page);
+            var ptr = e.app.ptr.create(".ptr-content-homepage");
+            ptr.on('refresh', function (e) {
+              getNews (e, page);
+              ptr.done();
+            });
           },
           formAjaxSuccess: function(formEl, data, xhr){
             // console.log(data);
@@ -211,6 +216,21 @@ new Vue({
                 getGuide(e,page);
                 getConvenzioni(e,page);
                 getProdotti(e,page);
+                var ptr1 = page.app.ptr.create(".ptr-content-guide");
+                ptr1.on('refresh', function (e) {
+                  getGuide (e, page);
+                  ptr1.done();
+                });
+                var ptr2 = page.app.ptr.create(".ptr-content-convenzioni");
+                ptr2.on('refresh', function (e) {
+                  getConvenzioni (e, page);
+                  ptr2.done();
+                });
+                var ptr3 = page.app.ptr.create(".ptr-content-prodotti");
+                ptr3.on('refresh', function (e) {
+                  getProdotti (e, page);
+                  ptr3.done();
+                });
               },
             }
           },
@@ -231,6 +251,16 @@ new Vue({
               pageAfterIn: function (e, page) {
                 getAnalisi(e,page);
                 getPosizioni(e,page);
+                var ptr1 = page.app.ptr.create(".ptr-content-settore-posizioni");
+                ptr1.on('refresh', function (e) {
+                  getAnalisi (e, page);
+                  ptr1.done();
+                });
+                var ptr2 = page.app.ptr.create(".ptr-content-settore-analisi");
+                ptr2.on('refresh', function (e) {
+                  getPosizioni (e, page);
+                  ptr2.done();
+                });
               },
             }
           },
@@ -261,6 +291,11 @@ new Vue({
               pageAfterIn: function openRassegna (e, page) {
                 getRassegna(e,page);
                 getDossierList(e,page);
+                var ptr1 = page.app.ptr.create(".ptr-content-media-dossier");
+                ptr1.on('refresh', function (e) {
+                  getDossierList (e, page);
+                  ptr1.done();
+                });
               },
             }
           },
@@ -291,6 +326,12 @@ new Vue({
             on: {
               pageAfterIn: function(e,page){
                 getEventi (e, page);
+                var ptr = page.app.ptr.create(".ptr-content-eventi");
+                ptr.on('refresh', function (e) {
+                  console.log(page.app.ptr);
+                  getEventi (e, page);
+                  ptr.done();
+                });
               }
             },
           },
@@ -400,5 +441,7 @@ document.addEventListener('deviceready', function () {
     // }
   });
   // cordova.plugins.notification.local is now available
+
+
 
 }, false);

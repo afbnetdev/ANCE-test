@@ -1,11 +1,12 @@
 function getEventi(e,page){
   Framework7.request.json(endPointUrl+'/Eventi/GetEventi', {}, function (data) {
     var listitems="";
+    // listitems += '<p>'+Date.now()+'</p>';
     // var url = '/eventidetail/eventiid/';
     for(i=0;i<data.length;i++){
       listitems += newsBadge(data[i], '');
     }
-    $$('#eventi-loader').remove();
+    $$('#eventi-loader').hide();
     $$('#eventi-container').html(listitems);
   });
 }

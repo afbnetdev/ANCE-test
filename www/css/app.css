@@ -39,6 +39,9 @@
 .txt-black{
   color:#000000;
 }
+.ptr-loader-tabs{
+  top: -40px!important;
+}
 /* SPECIFIC */
 #home-container, #newsdetail-container, .tabs-swipeable-wrap{
   background-color: #f5f5f5;
