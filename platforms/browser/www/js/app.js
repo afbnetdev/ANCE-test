@@ -360,14 +360,14 @@ document.addEventListener('deviceready', function () {
         for(i=0;i<data.length;i++){
           // console.log(data[i].FlagNotificaPush);
           // output[i] = data[i];
-          if(data[i].FlagNotificaPush){
+          if(!data[i].FlagNotificaPush){
             newsOutput[counter] = data[i];
             counter = counter+1;
           }
         }
   	    // console.log(data);
-        console.log("News to be notified:");
-        console.log(newsOutput);
+        // console.log("News to be notified:");
+        // console.log(newsOutput);
         var notifications = [];
         //cheks wheter we have an array of read news since now
         setNotificationEngine(newsOutput,readNews);

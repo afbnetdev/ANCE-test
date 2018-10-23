@@ -63,6 +63,43 @@ function setNotificationEngine(news,read){
     notifications = news;
   }
   //setNotificationEngine(newsOutput,{});
+  //console.log(notifications);
+  //console.log(notifications[0].IdContentuno);
+  //console.log('not: '+enable+' color: '+color + ' frequency: '+frequency);
+  /*for (var key in notifications) {
+    console.log('key: '+ key + ' => ' + notifications[key].IdContentuno);
+  }*/
+  var defNote = [];
+  var threeHours = [8,13,18];
+  var currentdate = new Date();
+  var i = 0;
+  for (var k in notifications) {
+    var freqObj = {};
+    switch(frequency){
+      case "Ogni ora":
+        freqObj = { in: i, unit: 'hour' };
+        break;
+      case "8:00 - 13:00 - 18:00":
+        freqObj = { at: new Date(currentdate.getFullYear(), currentdate.getMonth(), currentdate.getDay(), threeHours[i]) };
+        break;
+      case "Solo la mattina":
+        freqObj = { at: new Date(currentdate.getFullYear(), currentdate.getMonth(), currentdate.getDay(), 9) };
+        break;
+      case "Solo la sera":
+        freqObj = { at: new Date(currentdate.getFullYear(), currentdate.getMonth(), currentdate.getDay(), 19) }
+        break;
+    }
+    defNote[i] = {
+      id: notifications[k].IdContentuno,
+      title: notifications[k].Titoletto,
+      text: notifications[k].TitoloAnteprima,
+      trigger: freqObj
+    };
+    i++;
+    //trigger: { in: 1, unit: 'hour' }
+  }
+
+  console.log(defNote);
   cordova.plugins.notification.local.hasPermission(function (granted) {
     console.log(notifications);
     switch(color){
@@ -85,50 +122,7 @@ function setNotificationEngine(news,read){
     });
     //alert('Permission ' + granted);
     if(granted){
-      console.log(news[0]);
-      console.log('not: '+enable+' color: '+color);
-      var defNote;
-      var threeHours = [8,13,18];
-      var currentdate = new Date();
-      switch(frequency){
-        case "Ogni ora":
-          for(i=0;i<notifications;i++){
-            defNote[i].id = notifications[i].IdContentuno;
-            defNote[i].title = notifications[i].Titoletto;
-            defNote[i].text = notifications[i].TitoloAnteprima;
-            defNote[i].trigger = { in: i, unit: 'hour' };
-            //trigger: { in: 1, unit: 'hour' }
-          }
-          break;
-        case "8:00 - 13:00 - 18:00":
-          for(i=0;i<notifications;i++){
-            defNote[i].id = notifications[i].IdContentuno;
-            defNote[i].title = notifications[i].Titoletto;
-            defNote[i].text = notifications[i].TitoloAnteprima;
-            defNote[i].trigger = { at: new Date(currentdate.getFullYear(), currentdate.getMonth(), currentdate.getDay(), threeHours[i]) };
-            //trigger: { at: new Date(2017, 10, 27, 15) }
-          }
-          break;
-        case "Solo la mattina":
-          for(i=0;i<notifications;i++){
-            defNote[i.id] = notifications[i].IdContentuno;
-            defNote[i.title] = notifications[i].Titoletto;
-            defNote[i.text] = notifications[i].TitoloAnteprima;
-            defNote[i.trigger] = { at: new Date(currentdate.getFullYear(), currentdate.getMonth(), currentdate.getDay(), 9) };
-            //trigger: { at: new Date(2017, 10, 27, 15) }
-          }
-          break;
-        case "Solo la sera":
-          for(i=0;i<notifications;i++){
-            defNote[i.id] = notifications[i].IdContentuno;
-            defNote[i.title] = notifications[i].Titoletto;
-            defNote[i.text] = notifications[i].TitoloAnteprima;
-            defNote[i.trigger] = { at: new Date(currentdate.getFullYear(), currentdate.getMonth(), currentdate.getDay(), 19) };
-            //trigger: { at: new Date(2017, 10, 27, 15) }
-          }
-          break;
-      }
-      console.log(defNote);
+
       //alert('ok, grant');
 
       cordova.plugins.notification.local.schedule(defNote);
