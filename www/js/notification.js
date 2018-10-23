@@ -84,7 +84,7 @@ function setNotificationEngine(news,read){
       vibrate: (vibrate && vibrate=='on' ? true : false)
     });
     //alert('Permission ' + granted);
-    if(!granted){
+    if(granted){
       console.log(news[0]);
       console.log('not: '+enable+' color: '+color);
       var defNote;
