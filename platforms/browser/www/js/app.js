@@ -410,6 +410,10 @@ document.addEventListener('deviceready', function () {
         var notifications = [];
         //cheks wheter we have an array of read news since now
         setNotificationEngine(newsOutput,readNews);
+        //set loop over 1 day
+        setTimeout(function(){
+          setNotificationEngine(newsOutput,readNews);
+        }, 24*3600*1000 );
       },
     });
     // console.log(newsOutput);
