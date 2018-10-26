@@ -371,7 +371,7 @@ document.addEventListener('deviceready', function () {
     else{
       sets = JSON.parse(data);
     }
-    // console.log(sets);
+    console.log(sets);
     //define session variable
     setSettingsMemory(sets);
     // b = window.sessionStorage.getItem('n_color');
@@ -388,8 +388,6 @@ document.addEventListener('deviceready', function () {
       readNews = JSON.parse(data);
     }
     var newsOutput={};
-    //getNewsStream(newsOutput);
-    //get the actual news stream and filter trough the news to be notified
     Framework7.request({
       url: endPointUrl+'/Contenuti/GetAll',
       async: true,
