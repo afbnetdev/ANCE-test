@@ -11,18 +11,23 @@ function newsBadge(data, url){
     item += '<a href="'+url+'" class="link">';
   }
   item += '<div class="card demo-card-header-pic">';
-  if(data.LinkImgIntestazione && data.LinkImgIntestazione !=""){
-    item += '<div style="background-image:url(http://'+data.LinkImgIntestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
+  if(data.LinkImgAnteprima && data.LinkImgAnteprima !=""){
+    item += '<div style="background-image:url(http://'+data.LinkImgAnteprima.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
   }
-  item += '<div class="card-footer"><span class="text-align-right">'+data.Titoletto+'</span></div>';
-  item += '<div class="card-header text-align-left"><strong>'+data.TitoloAnteprima+'</strong></div>';
-  item += '<div class="card-content card-content-padding txt-black text-align-justify">';
-  if(data.Abstract && data.Abstract!=''){
-    item += '<p class="txt-black">'+data.Abstract+'</p>';
+  if(data.Titoletto && data.Titoletto!=''){
+    item += '<div class="card-footer"><span class="text-align-right">'+data.Titoletto+'</span></div>';
   }
 
-  item += '</div>';
-  //item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
+  item += '<div class="card-header text-align-left"><strong>'+data.TitoloAnteprima+'</strong></div>';
+
+  if(data.Abstract && data.Abstract!=''){
+    item += '<div class="card-content card-content-padding txt-black text-align-justify">';
+    item += '<p class="txt-black">'+data.Abstract+'</p>';
+    item += '</div>';
+  }
+  if(data.DataDocumento && data.DataDocumento != ''){
+    item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
+  }
   item += '</div>';
   if((data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!="") || url!=""){
     item += '</a>';
@@ -32,7 +37,7 @@ function newsBadge(data, url){
 function newsDetail(data,guideID){
   // console.log(guideID);
   var newsItem = '';
-  var intestazione = data[guideID].LinkImgIntestazione;
+  var intestazione = (data[guideID].LinkImgIntestazione && data[guideID].LinkImgIntestazione!="") ? data[guideID].LinkImgIntestazione : '';
   var day = (data[guideID].DataDocumento) ? data[guideID].DataDocumento.substring(8,10) : '00';
   var month = (data[guideID].DataDocumento) ? getMonths(data[guideID].DataDocumento.substring(5,7),1) : '00';
   var year = (data[guideID].DataDocumento) ? data[guideID].DataDocumento.substring(0,4) : '0000';

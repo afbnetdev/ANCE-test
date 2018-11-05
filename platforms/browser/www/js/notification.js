@@ -35,9 +35,9 @@ function setNotificationEngine(news,read){
   if(!enable||enable!='on'){
     return false;
   }
-  var vibrate =  window.sessionStorage.getItem('n_vibrate[]');
+  // var vibrate =  window.sessionStorage.getItem('n_vibrate[]');
   var frequency =  window.sessionStorage.getItem('n_frequency');
-  var color =  window.sessionStorage.getItem('n_color');
+  // var color =  window.sessionStorage.getItem('n_color');
   var notifications = [];
   if(read && read.length>0){
     for (var k in news) {
@@ -113,24 +113,24 @@ function setNotificationEngine(news,read){
   console.log(currentdate.getFullYear());
   cordova.plugins.notification.local.hasPermission(function (granted) {
     // console.log(notifications);
-    switch(color){
-      case 'Rosso':
-        setColor = '#ff0000';
-        break;
-      case 'Blu':
-        setColor = '#0000ff';
-        break;
-      case 'Bianco':
-        setColor = '#ffffff';
-        break;
-      case 'Verde':
-        setColor = '#00ff00';
-        break;
-    }
-    cordova.plugins.notification.local.setDefaults({
-      led: { color: setColor, on: 500, off: 500},
-      vibrate: (vibrate && vibrate=='on' ? true : false)
-    });
+    // switch(color){
+    //   case 'Rosso':
+    //     setColor = '#ff0000';
+    //     break;
+    //   case 'Blu':
+    //     setColor = '#0000ff';
+    //     break;
+    //   case 'Bianco':
+    //     setColor = '#ffffff';
+    //     break;
+    //   case 'Verde':
+    //     setColor = '#00ff00';
+    //     break;
+    // }
+    // cordova.plugins.notification.local.setDefaults({
+    //   led: { color: setColor, on: 500, off: 500},
+    //   vibrate: (vibrate && vibrate=='on' ? true : false)
+    // });
     //alert('Permission ' + granted);
     if(granted){
       //alert('ok, grant');
@@ -156,7 +156,7 @@ function getDefaultSettings(){
   var a={};
   a["n_enable[]"] = 'on';
   a["n_vibrate[]"] = 'on';
-  a["n_frequency"] = 'Ogni ora';
-  a["n_color"] = 'Blu';
+  // a["n_frequency"] = 'Ogni ora';
+  // a["n_color"] = 'Blu';
   return a;
 }
