@@ -1,5 +1,5 @@
 function newsBadge(data, url){
-  console.log(Date.now());
+  // console.log(Date.now());
   var day = (data.DataDocumento) ? data.DataDocumento.substring(8,10) : '00';
   var month = (data.DataDocumento) ? getMonths(data.DataDocumento.substring(5,7),1) : '00';
   var year = (data.DataDocumento) ? data.DataDocumento.substring(0,4) : '0000';

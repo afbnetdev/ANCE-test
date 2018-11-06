@@ -57,10 +57,13 @@
 .tabs-ance{
   padding-top: 0px!important;
 }
-.imprese-page-ptr .tabs-swipeable-wrap,
+/*.imprese-page-ptr .tabs-swipeable-wrap,
 .settore-page-ptr .tabs-swipeable-wrap,
-.media-page-ptr .ptr-content{
-  margin-top: -125px;
+.media-page-ptr .ptr-content*/
+.imprese-page-ptr .page-content,
+.settore-page-ptr .page-content,
+.media-page-ptr .page-content{
+  padding-top: 40px!important;
 }
 #organi-accordion-container .accordion-item a .item-content{
   background-color: #073D6B;
