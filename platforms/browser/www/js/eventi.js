@@ -5,7 +5,9 @@ function getEventi(e,page){
     for(i=0;i<data.length;i++){
       listitems += newsBadge(data[i], url+i);
     }
-    $$('#eventi-loader').hide();
+    if($$('#eventi-loader')){
+      $$('#eventi-loader').hide();
+    }
     $$('#eventi-container').html(listitems);
   });
 }

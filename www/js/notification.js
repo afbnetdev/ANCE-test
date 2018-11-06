@@ -70,7 +70,7 @@ function setNotificationEngine(news,read){
     console.log('key: '+ key + ' => ' + notifications[key].IdContentuno);
   }*/
   var defNote = [];
-  var threeHours = [8,13,18];
+  // var threeHours = [8,13,18];
   var currentdate = new Date();
   var curYear = currentdate.getFullYear();
   var curMonth = currentdate.getMonth();
@@ -81,20 +81,21 @@ function setNotificationEngine(news,read){
     var breakLoop = 0;
     switch(frequency){
       case "Ogni ora":
-        freqObj = { in: i, unit: 'hour' };
+        freqObj = { in: i+1, unit: 'hour' };
         break;
-      case "8:00 - 13:00 - 18:00":
-        freqObj = { at: new Date(curYear, curYear, curDay ,threeHours[i]) };
-        breakLoop = 3;
+      case "Ogni 4 ore":
+        // freqObj = { at: new Date(curYear, curYear, curDay ,threeHours[i]) };
+        freqObj = { in: (i+1)*4, unit: 'hour' };
+        //breakLoop = 3;
         break;
-      case "Solo la mattina":
+      case "Una volta al giorno":
         freqObj = { at: new Date(curYear, curYear, curDay, 9) };
         breakLoop = 1;
         break;
-      case "Solo la sera":
-        freqObj = { at: new Date(curYear, curYear, curDay, 19) }
-        breakLoop = 1;
-        break;
+      // case "Solo la sera":
+      //   freqObj = { at: new Date(curYear, curYear, curDay, 19) }
+      //   breakLoop = 1;
+      //   break;
     }
     defNote[i] = {
       id: notifications[k].IdContentuno,
@@ -155,8 +156,8 @@ function setSettingsMemory(sets){
 function getDefaultSettings(){
   var a={};
   a["n_enable[]"] = 'on';
-  a["n_vibrate[]"] = 'on';
-  // a["n_frequency"] = 'Ogni ora';
+  a["n_frequency"] = 'Ogni ora';
+  // a["n_vibrate[]"] = 'on';
   // a["n_color"] = 'Blu';
   return a;
 }

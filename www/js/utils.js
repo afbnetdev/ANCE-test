@@ -1,4 +1,5 @@
 function newsBadge(data, url){
+  console.log(Date.now());
   var day = (data.DataDocumento) ? data.DataDocumento.substring(8,10) : '00';
   var month = (data.DataDocumento) ? getMonths(data.DataDocumento.substring(5,7),1) : '00';
   var year = (data.DataDocumento) ? data.DataDocumento.substring(0,4) : '0000';
@@ -12,7 +13,7 @@ function newsBadge(data, url){
   }
   item += '<div class="card demo-card-header-pic">';
   if(data.LinkImgAnteprima && data.LinkImgAnteprima !=""){
-    item += '<div style="background-image:url(http://'+data.LinkImgAnteprima.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
+    item += '<div style="background-image:url('+data.LinkImgAnteprima.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end"></div>';
   }
   if(data.Titoletto && data.Titoletto!=''){
     item += '<div class="card-footer"><span class="text-align-right">'+data.Titoletto+'</span></div>';
@@ -59,7 +60,9 @@ function newsDetail(data,guideID){
 
   newsItem += '<div class="card demo-card-header-pic">';
   if(intestazione !=""){
+    // console.log(intestazione);
     newsItem += '<div style="background-image:url(http://'+intestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end">'+data[guideID].Titoletto+'</div>';
+    // newsItem += '<div style="background-image:url('+intestazione.replace(/\\/gi,"/")+')" class="card-header card-header-pic align-items-flex-end">'+data[guideID].Titoletto+'</div>';
   }
   newsItem += '<div class="card-header text-align-left"><strong>'+data[guideID].Titolo+'</strong></div>';
   newsItem += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + ' <span class="text-align-right">'+data[guideID].Titoletto+'</span></div>';

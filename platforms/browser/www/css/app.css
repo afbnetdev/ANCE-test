@@ -15,6 +15,10 @@
 #home-container{
   margin: 10px 0 !important;
 }
+#home-container .card-content img{
+  width:100% !important;
+  height: auto !important;
+}
 #eventi-container,
 #settings-container{
   margin: 0px 0 !important;
@@ -52,6 +56,11 @@
 }
 .tabs-ance{
   padding-top: 0px!important;
+}
+.imprese-page-ptr .tabs-swipeable-wrap,
+.settore-page-ptr .tabs-swipeable-wrap,
+.media-page-ptr .ptr-content{
+  margin-top: -125px;
 }
 #organi-accordion-container .accordion-item a .item-content{
   background-color: #073D6B;
