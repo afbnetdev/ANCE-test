@@ -375,7 +375,7 @@ new Vue({
 //   console.log(data);
 // });
 document.addEventListener('deviceready', function () {
-  
+
   //get app settings and set them to session
   //if nothing has been written before I get the default settings
   getPersistentFile(fileSettings, function(data){
@@ -386,7 +386,7 @@ document.addEventListener('deviceready', function () {
     else{
       sets = JSON.parse(data);
     }
-    console.log(sets);
+    // console.log(sets);
     //define session variable
     setSettingsMemory(sets);
     // b = window.sessionStorage.getItem('n_color');
@@ -397,8 +397,8 @@ document.addEventListener('deviceready', function () {
   getPersistentFile(fileNewsQueue, function(data){
     //get app settings
     var readNews;
-    console.log('News already read');
-    console.log(data);
+    // console.log('News already read');
+    // console.log(data);
     if(data!=''){
       readNews = JSON.parse(data);
     }

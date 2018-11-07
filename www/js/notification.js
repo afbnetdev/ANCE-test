@@ -32,9 +32,9 @@ function getNewsStream(newsOutput){
 function setNotificationEngine(news,read){
   //get settings into variables
   var enable = window.sessionStorage.getItem('n_enable[]');
-  console.log(enable);
+  // console.log(enable);
   if(!enable||enable!='on'){
-    console.log('notific disable');
+    // console.log('notific disable');
     return false;
   }
   // var vibrate =  window.sessionStorage.getItem('n_vibrate[]');
@@ -54,7 +54,7 @@ function setNotificationEngine(news,read){
           }
         }
       }
-      console.log("notifica: " + notifyMe + ' ## idnews: ' + news[k].IdContentuno);
+      // console.log("notifica: " + notifyMe + ' ## idnews: ' + news[k].IdContentuno);
       if(notifyMe){
         //console.log('can can can');
         notifications.push(news[k]);
