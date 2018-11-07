@@ -375,11 +375,7 @@ new Vue({
 //   console.log(data);
 // });
 document.addEventListener('deviceready', function () {
-  cordova.plugins.notification.local.schedule({
-      title: 'Do you want to go see a movie tonight?',
-      actions: [{ id: 'yes', title: 'Yes' }]
-  });
-  alert(cordova.plugins.notification.local.launchDetails);
+  
   //get app settings and set them to session
   //if nothing has been written before I get the default settings
   getPersistentFile(fileSettings, function(data){

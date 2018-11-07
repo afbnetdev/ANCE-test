@@ -32,7 +32,9 @@ function getNewsStream(newsOutput){
 function setNotificationEngine(news,read){
   //get settings into variables
   var enable = window.sessionStorage.getItem('n_enable[]');
+  console.log(enable);
   if(!enable||enable!='on'){
+    console.log('notific disable');
     return false;
   }
   // var vibrate =  window.sessionStorage.getItem('n_vibrate[]');
@@ -47,13 +49,14 @@ function setNotificationEngine(news,read){
       if (news.hasOwnProperty(k)) {
         // console.log(newsOutput[k]);
         for(j=0;j<read.length;j++){
-          if( news[k].IdContentuno == read[j].newsId ){
+          if( news[k].IdContentuno == read[j] ){
             notifyMe = false;
           }
         }
       }
-      if(!notifyMe){
-        console.log('can can can');
+      console.log("notifica: " + notifyMe + ' ## idnews: ' + news[k].IdContentuno);
+      if(notifyMe){
+        //console.log('can can can');
         notifications.push(news[k]);
       }
     }
@@ -63,7 +66,8 @@ function setNotificationEngine(news,read){
     notifications = news;
   }
   //setNotificationEngine(newsOutput,{});
-  //console.log(notifications);
+  // console.log('NOTIFICATIONS:');
+  // console.log(notifications);
   //console.log(notifications[0].IdContentuno);
   //console.log('not: '+enable+' color: '+color + ' frequency: '+frequency);
   /*for (var key in notifications) {
@@ -83,11 +87,12 @@ function setNotificationEngine(news,read){
     switch(frequency){
       case "Ogni ora":
         freqObj = { in: i+1, unit: 'hour' };
+        breakLoop = 24;
         break;
       case "Ogni 4 ore":
         // freqObj = { at: new Date(curYear, curYear, curDay ,threeHours[i]) };
         freqObj = { in: (i+1)*4, unit: 'hour' };
-        //breakLoop = 3;
+        breakLoop = 6;
         break;
       case "Una volta al giorno":
         freqObj = { at: new Date(curYear, curYear, curDay, 9) };
@@ -111,7 +116,11 @@ function setNotificationEngine(news,read){
     }
     //trigger: { in: 1, unit: 'hour' }
   }
-  console.log(readNote);
+  var vv = JSON.stringify(readNote);
+  // console.log(vv);
+  // console.log(JSON.parse(vv));
+  // console.log(fileNewsQueue);
+  setPersistentFile(fileNewsQueue, JSON.stringify(readNote));
   //console.log(defNote);
   //console.log(currentdate.getFullYear());
   cordova.plugins.notification.local.hasPermission(function (granted) {
@@ -148,12 +157,20 @@ function setNotificationEngine(news,read){
 }
 
 function setSettingsMemory(sets){
-  for (var key in sets) {
-    if (sets.hasOwnProperty(key)) {
-      // console.log(key + " -> " + sets[key]);
-      window.sessionStorage.setItem(key, sets[key]);
-    }
+  if(!sets["n_enable[]"] || sets["n_enable[]"]!='on'){
+    window.sessionStorage.setItem('n_enable[]', 'off');
   }
+  else{
+    window.sessionStorage.setItem('n_enable[]', 'on');
+  }
+  window.sessionStorage.setItem('n_frequency', sets.n_frequency);
+  // if(!sets["n_vibrate[]"] || sets["n_vibrate[]"]!='on'){
+  //   window.sessionStorage.setItem('n_vibrate[]', 'off');
+  // }
+  // else{
+  //   window.sessionStorage.setItem('n_vibrate[]', 'on');
+  // }
+  // window.sessionStorage.setItem('n_color', sets.n_frequency);
 }
 function getDefaultSettings(){
   var a={};
