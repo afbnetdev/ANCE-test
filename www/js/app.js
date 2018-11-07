@@ -63,7 +63,7 @@ Vue.component('page-home', {
 });
 
 var $$ = Dom7;
-var endPointUrl = 'http://serviceappsvil.ance.it:26031/ServiceAppAnce.svc';
+var endPointUrl = 'http://serviceapp.ance.it:26031/ServiceAppAnce.svc';
 var fileSettings = 'app-settings.txt';
 var fileNewsQueue = 'app-news.txt';
 

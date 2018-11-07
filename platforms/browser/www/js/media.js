@@ -31,12 +31,13 @@ function getMediaDetail(e,page,url){
 function getDossierList(e, page){
   Framework7.request.json(endPointUrl+'/Media/GetDossier', {}, function (data) {
     var listitems="";
+    // listitems += Date.now();
     var url = '/dossierdetail/dossierid/';
     for(i=0;i<data.length;i++){
       listitems += newsBadge(data[i], url+i);
     }
     $$('#dossier-loader').remove();
-    $$('#list-dossier').html(listitems);
+    $$('#media-dossier').html(listitems);
   });
   // var output = [];
   // Framework7.request({

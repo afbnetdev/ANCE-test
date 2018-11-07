@@ -15,9 +15,17 @@
 #home-container{
   margin: 10px 0 !important;
 }
-#eventi-container{
+#home-container .card-content img{
+  width:100% !important;
+  height: auto !important;
+}
+#eventi-container,
+#settings-container{
   margin: 0px 0 !important;
   background-color: #f5f5f5 !important;
+}
+#settings-container form{
+  background-color: #ffffff !important;
 }
 #about-container{
   margin: 0px 0 !important;
@@ -35,8 +43,25 @@
 .txt-black{
   color:#000000;
 }
+.ptr-loader-tabs{
+  top: -40px!important;
+}
+div.page-content > div.block > a.link,
+div.page-content > div.block > a.link > div.card,
+div.page-content > div.list > a.link,
+div.page-content > div.list > a.link > div.card{
+  width: 100%;
+}
 /* SPECIFIC */
-#home-container, #newsdetail-container, .tabs-swipeable-wrap{
+#home-container,
+#newsdetail-container,
+.dossier-ptr.page,
+.analisi-ptr.page,
+.guide-ptr.page,
+.convenzioni-ptr.page,
+.prodotti-ptr.page,
+.posizioni-ptr.page,
+.tabs-swipeable-wrap{
   background-color: #f5f5f5;
 }
 #newsdetail-container{
@@ -45,6 +70,14 @@
 }
 .tabs-ance{
   padding-top: 0px!important;
+}
+/*.imprese-page-ptr .tabs-swipeable-wrap,
+.settore-page-ptr .tabs-swipeable-wrap,
+.media-page-ptr .ptr-content*/
+.imprese-page-ptr .page-content,
+.settore-page-ptr .page-content,
+.media-page-ptr .page-content{
+  padding-top: 40px!important;
 }
 #organi-accordion-container .accordion-item a .item-content{
   background-color: #073D6B;

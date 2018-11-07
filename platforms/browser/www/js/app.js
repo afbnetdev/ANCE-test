@@ -1,6 +1,5 @@
 // Init F7 Vue Plugin
 Framework7.use(Framework7Vue);
-
 // Init Page Components
 Vue.component('page-about', {
   template: '#page-about'
@@ -29,9 +28,9 @@ Vue.component('page-dossierdetail',{
 Vue.component('page-eventi', {
   template: '#page-eventi'
 });
-// Vue.component('page-eventidetail', {
-//   template: '#page-eventidetail'
-// });
+Vue.component('page-eventidetail', {
+  template: '#page-eventidetail'
+});
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
 });
@@ -53,13 +52,21 @@ Vue.component('page-guidedetail', {
 Vue.component('page-not-found', {
   template: '#page-not-found'
 });
+Vue.component('page-settings', {
+  template: '#page-settings'
+});
+Vue.component('page-settingsdata', {
+  template: '#page-settingsdata'
+});
 Vue.component('page-home', {
   template: '#main-view'
 });
 
 var $$ = Dom7;
 var endPointUrl = 'http://serviceapp.ance.it:26031/ServiceAppAnce.svc';
-// var app = new Framework7();
+var fileSettings = 'app-settings.txt';
+var fileNewsQueue = 'app-news.txt';
+
 // Init App
 new Vue({
   el: '#app',
@@ -74,9 +81,27 @@ new Vue({
         removeElements: true,
         on: {
           pageInit: function (e,page){
-            // console.log('home init');
-            // console.log(page.route);
+            // console.log(e);
             getNews(e,page);
+            var ptrhome = e.app.ptr.get(".home-page-ptr > .ptr-content");
+            // console.log(ptrhome);
+            if(ptrhome){
+              ptrhome.on('refresh', function (e) {
+                getNews(e, page);
+                ptrhome.done();
+              });
+            }
+          },
+          pageAfterIn: function (e,page){
+          },
+          formAjaxSuccess: function(formEl, data, xhr){
+            // console.log(data);
+            // console.log(formEl);
+            var a = QueryStringToJSON('?'+data);
+            //write settigns to a file
+            setPersistentFile(fileSettings, JSON.stringify(a));
+            //reset session items
+            setSettingsMemory(a);
           },
         },
         // App routes
@@ -84,6 +109,49 @@ new Vue({
           {
             path: '/home/',
             component: 'page-home',
+          },
+          {
+            path: '/settings/',
+            component: 'page-settings',
+            on: {
+              pageAfterIn: function(e,page){
+                var fileContent = '';
+                getPersistentFile(fileSettings, function(data){
+                  fileContent = data;
+                  // console.log(fileContent);
+                  if(data==''){
+                    obj = getDefaultSettings();
+                  }
+                  else{
+                    obj = JSON.parse(data);
+                  }
+                  var n_enable = page.app.toggle.get('#n_enable');
+                  // var n_vibrate = page.app.toggle.get('#n_vibrate');
+                  var n_frequency = page.app.smartSelect.get('#n_frequency a');
+                  // var n_color = page.app.smartSelect.get('#n_color a');
+                  if((!obj["n_enable[]"] && n_enable.checked) || (obj["n_enable[]"] && obj["n_enable[]"]=='on' && !n_enable.checked ) ){
+                    n_enable.toggle();
+                  }
+                  // if((!obj["n_vibrate[]"] && n_vibrate.checked) || (obj["n_vibrate[]"] && obj["n_vibrate[]"]=='on' && !n_vibrate.checked ) ){
+                  //   n_vibrate.toggle();
+                  // }
+                  //change smart select values
+                  $$('select[name="n_frequency"] option[value="'+obj["n_frequency"]+'"]').prop('selected',true);
+                  // $$('select[name="n_color"] option[value="'+obj["n_color"]+'"]').prop('selected',true);
+                  //change displayed value
+                  n_frequency.setValue(obj["n_frequency"]);
+                  // n_color.setValue(obj["n_color"]);
+                  //change radio button value on radio list popups
+                  n_frequency.on('open', function(){
+                    var colorInput = $$('input[name="'+n_frequency.inputName+'"][value="'+obj["n_frequency"]+'"]').prop('checked',true);
+                  });
+                  // n_color.on('open', function(){
+                  //   var colorInput = $$('input[name="'+n_color.inputName+'"][value="'+obj["n_color"]+'"]').prop('checked',true);
+                  // });
+
+                });
+              }
+            },
           },
           {
             path: '/newsdetail/newsid/:newsId',
@@ -151,6 +219,27 @@ new Vue({
                 getGuide(e,page);
                 getConvenzioni(e,page);
                 getProdotti(e,page);
+                var ptr1 = page.app.ptr.get(".guide-ptr > .ptr-content");
+                if(ptr1){
+                  ptr1.on('refresh', function (e) {
+                    getGuide(e,page);
+                    ptr1.done();
+                  });
+                }
+                var ptr2 = page.app.ptr.get(".convenzioni-ptr > .ptr-content");
+                if(ptr2){
+                  ptr2.on('refresh', function (e) {
+                    getConvenzioni (e, page);
+                    ptr2.done();
+                  });
+                }
+                var ptr3 = page.app.ptr.get(".prodotti-ptr > .ptr-content");
+                if(ptr3){
+                  ptr3.on('refresh', function (e) {
+                    getProdotti (e, page);
+                    ptr3.done();
+                  });
+                }
               },
             }
           },
@@ -171,6 +260,17 @@ new Vue({
               pageAfterIn: function (e, page) {
                 getAnalisi(e,page);
                 getPosizioni(e,page);
+
+                var ptrset1 = page.app.ptr.get(".posizioni-ptr > .ptr-content");
+                ptrset1.on('refresh', function (e) {
+                  getPosizioni (e, page);
+                  ptrset1.done();
+                });
+                var ptrset2 = page.app.ptr.get(".analisi-ptr > .ptr-content");
+                ptrset2.on('refresh', function (e) {
+                  getAnalisi (e, page);
+                  ptrset2.done();
+                });
               },
             }
           },
@@ -201,6 +301,13 @@ new Vue({
               pageAfterIn: function openRassegna (e, page) {
                 getRassegna(e,page);
                 getDossierList(e,page);
+                var ptrmedia = page.app.ptr.get(".dossier-ptr .ptr-content");
+                if(ptrmedia){
+                  ptrmedia.on('refresh', function (e) {
+                    getDossierList (e, page);
+                    ptrmedia.done();
+                  });
+                }
               },
             }
           },
@@ -231,15 +338,23 @@ new Vue({
             on: {
               pageAfterIn: function(e,page){
                 getEventi (e, page);
+                var ptrevent = page.app.ptr.get(".eventi-page-ptr > .ptr-content");
+                if(ptrevent){
+                  ptrevent.on('refresh', function (e) {
+                    // console.log(page.app.ptr);
+                    getEventi (e, page);
+                    ptrevent.done();
+                  });
+                }
               }
             },
           },
           {
-            path: '/eventidetail/id/:id',
+            path: '/eventidetail/eventiid/:eventiid',
             component: 'page-eventidetail',
             on: {
               pageAfterIn: function(e,page){
-                var eventId = page.route.params.id;
+                var eventId = page.route.params.eventiid;
                 getEventiDetail (e, page, eventId);
               }
             },
@@ -253,29 +368,97 @@ new Vue({
     }
   },
 });
-/**
-  2018-09-15
-  Lorenzo Lombardi l.lombardi@afbnet.it
-  Numeric months to Italian
-  @integer num : numeric expression of the month
-  @integer len: 0 (default) for short version, 1 for long, 2 return fullist
-*/
-function getMonths(num, len=0){
-  //var month = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-  var month = ['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
-  var longmonth = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-  var m = '';
-  switch(len){
-    case 0:
-    m = month[Math.floor(num)];
-    break;
-    case 1:
-    m = longmonth[Math.floor(num)];
-    break;
-    case 2:
-    longmonth.shift();
-    m = longmonth;
-    break;
-  }
-  return m;
-}
+
+
+// var app = new Framework7();
+// app.on('formAjaxSuccess', function (formEl, data, xhr) {
+//   console.log(data);
+// });
+document.addEventListener('deviceready', function () {
+
+  //get app settings and set them to session
+  //if nothing has been written before I get the default settings
+  getPersistentFile(fileSettings, function(data){
+    var sets;
+    if(data==''){
+      sets = getDefaultSettings();
+    }
+    else{
+      sets = JSON.parse(data);
+    }
+    // console.log(sets);
+    //define session variable
+    setSettingsMemory(sets);
+    // b = window.sessionStorage.getItem('n_color');
+    // console.log(b);
+  });
+  //notification scheduler
+  var readNews;
+  getPersistentFile(fileNewsQueue, function(data){
+    //get app settings
+    var readNews;
+    // console.log('News already read');
+    // console.log(data);
+    if(data!=''){
+      readNews = JSON.parse(data);
+    }
+    var newsOutput={};
+    Framework7.request({
+      url: endPointUrl+'/Contenuti/GetAll',
+      async: true,
+      method: 'GET',
+      dataType: 'json',
+      success: function (data, status, xhr){
+        //output = data;
+        var counter = 0;
+        for(i=0;i<data.length;i++){
+          // console.log(data[i].FlagNotificaPush);
+          // output[i] = data[i];
+          if(!data[i].FlagNotificaPush){
+            newsOutput[counter] = data[i];
+            counter = counter+1;
+          }
+        }
+  	    // console.log(data);
+        // console.log("News to be notified:");
+        // console.log(newsOutput);
+        var notifications = [];
+        //cheks wheter we have an array of read news since now
+        setNotificationEngine(newsOutput,readNews);
+        //set loop over 1 day
+        setTimeout(function(){
+          setNotificationEngine(newsOutput,readNews);
+        }, 24*3600*1000 );
+      },
+    });
+    // console.log(newsOutput);
+    //getTimeOut(newsOutput,readNews);
+    // console.log(newsOutput);
+    // console.log(newsOutput);
+    // console.log(Object.getOwnPropertyNames(newsOutput));
+    // console.log(Object.keys(newsOutput));
+    //alert(newsOutput);
+    // var notifications = [];
+    // for (var k in newsOutput) {
+    //   console.log(k);
+    // //for(i=0;i<newsOutput.length;i++){
+    //   var notifyMe = true;
+    //   if (newsOutput.hasOwnProperty(k)) {
+    //     console.log(newsOutput[k]);
+    //     for(j=0;j<readNews.length;j++){
+    //       if( newsOutput[k].IdContentuno == readNews[j].newsId ){
+    //         notifyMe = false;
+    //       }
+    //     }
+    //   }
+    //   if(!notifyMe){
+    //     console.log('can can can');
+    //     notifications.push(newsOutput[k]);
+    //   }
+    // }
+  });
+  // cordova.plugins.notification.local is now available
+
+
+
+}, false);

@@ -39,11 +39,17 @@
         },
         "cordova-plugin-calendar": {
             "PACKAGE_NAME": "com.ancebetaapp.com"
+        },
+        "cordova-plugin-local-notification": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.ancebetaapp.com"
+        },
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "com.anceapp.com"
         }
     }
 }
