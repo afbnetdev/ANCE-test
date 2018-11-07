@@ -54,18 +54,18 @@
                 <f7-icon slot="media" icon="f7-icons">briefcase_fill</f7-icon>
               </f7-list-item>
             </f7-list>
-            <!-- <f7-list>
-              <f7-list-item link="/impostazioni/" title="Impostazioni" view="#main-view" panel-close>
+            <f7-list>
+              <f7-list-item link="/settings/" title="Impostazioni" view="#main-view" panel-close>
                 <f7-icon slot="media" icon="f7-icons">gear_fill</f7-icon>
               </f7-list-item>
-            </f7-list> -->
+            </f7-list>
           </f7-page>
         </f7-view>
       </f7-panel>
 
       <!-- Main View -->
       <f7-view id="main-view" main>
-        <f7-page>
+        <f7-page ptr class="home-page-ptr">
           <f7-navbar class="color-white">
             <f7-nav-left>
               <f7-link icon-if-ios="f7:menu" icon-if-md="material:menu" panel-open="left" icon-color="blue"></f7-link>
@@ -88,12 +88,14 @@
               </f7-col>
             </f7-row>
           </f7-block>
-          <f7-block strong class="text-align-center" id="home-container">
-            <f7-block class="row text-align-center" id="home-loader">
-            <f7-col>
-              <f7-preloader color="blue"></f7-preloader>
-            </f7-col>
-          </f7-block>
+          <div class="ptr-content-homepage">
+            <f7-block strong class="text-align-center" id="home-container">
+              <f7-block class="row text-align-center" id="home-loader">
+              <f7-col>
+                <f7-preloader color="blue"></f7-preloader>
+              </f7-col>
+            </f7-block>
+          </div>
         </f7-page>
       </f7-view>
       <!-- Popup -->
@@ -242,7 +244,7 @@
   </template>
   <!-- Prodotti Page Template -->
   <template id="page-imprese">
-    <f7-page>
+    <f7-page class="imprese-page-ptr">
       <f7-navbar>
         <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Per le imprese</f7-nav-title>
@@ -254,19 +256,25 @@
       </f7-toolbar>
       <f7-tabs swipeable>
         <f7-tab id="tabprodotti-1" class="page-content tabs-ance" tab-active>
-          <f7-block id="prodotti-guide">
-            <f7-block id="guide-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
-          </f7-block>
+          <f7-page ptr class="guide-ptr">
+            <f7-block id="prodotti-guide">
+              <f7-block id="guide-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
+            </f7-block>
+          </f7-page>
         </f7-tab>
         <f7-tab id="tabprodotti-2" class="page-content tabs-ance">
-          <f7-block id="prodotti-convenzioni">
-            <f7-block id="convenzioni-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
-          </f7-block>
+          <f7-page ptr class="convenzioni-ptr">
+            <f7-block id="prodotti-convenzioni">
+              <f7-block id="convenzioni-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
+            </f7-block>
+          </f7-page>
         </f7-tab>
         <f7-tab id="tabprodotti-3" class="page-content tabs-ance">
-          <f7-block id="prodotti-prodotti">
-            <f7-block id="prodotti-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
-          </f7-block>
+          <f7-page ptr class="prodotti-ptr">
+            <f7-block id="prodotti-prodotti">
+              <f7-block id="prodotti-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
+            </f7-block>
+          </f7-page>
         </f7-tab>
       </f7-tabs>
     </f7-page>
@@ -288,7 +296,7 @@
 
   <!-- settore Page Template -->
   <template id="page-settore">
-    <f7-page>
+    <f7-page class="settore-page-ptr">
       <f7-navbar>
         <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Per il settore</f7-nav-title>
@@ -299,14 +307,18 @@
       </f7-toolbar>
       <f7-tabs swipeable>
         <f7-tab id="tabsettore-1" class="page-content tabs-ance" tab-active>
-          <f7-block id="settore-posizioni">
-            <f7-block id="posizioni-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
-          </f7-block>
+            <f7-page ptr class="posizioni-ptr">
+              <f7-block id="settore-posizioni">
+                <f7-block id="posizioni-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
+              </f7-block>
+            </f7-page>
         </f7-tab>
         <f7-tab id="tabsettore-2" class="page-content tabs-ance">
-          <f7-block id="settore-analisi">
-            <f7-block id="analisi-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
-          </f7-block>
+            <f7-page ptr class="analisi-ptr">
+              <f7-block id="settore-analisi">
+                <f7-block id="analisi-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
+              </f7-block>
+            </f7-page>
         </f7-tab>
       </f7-tabs>
     </f7-page>
@@ -340,7 +352,7 @@
 
   <!-- media Page Template -->
   <template id="page-media">
-    <f7-page>
+    <f7-page class="media-page-ptr">
       <f7-navbar>
         <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Media</f7-nav-title>
@@ -359,12 +371,27 @@
           <div class="list"><ul id="list-rassegna"></ul></div>
         </f7-tab>
         <f7-tab id="tabmedia-2" class="page-content tabs-ance text-align-center">
-          <f7-block class="row" id="dossier-loader">
-            <f7-col>
-              <f7-preloader color="blue"></f7-preloader>
-            </f7-col>
-          </f7-block>
-          <div class="list" id="list-dossier"></div>
+          <f7-page ptr class="dossier-ptr">
+            <f7-block id="media-dossier">
+              <f7-block id="dossier-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
+            </f7-block>
+
+            <!-- <f7-block class="row" id="dossier-loader">
+              <f7-col>
+                <f7-preloader color="blue"></f7-preloader>
+              </f7-col>
+            </f7-block>
+            <div class="list" id="list-dossier"></div> -->
+          </f7-page>
+          <!--
+          <f7-tab id="tabsettore-2" class="page-content tabs-ance">
+              <f7-page ptr class="analisi-ptr">
+                <f7-block id="settore-analisi">
+                  <f7-block id="analisi-loader" class="row text-align-center"><f7-col><f7-preloader color="blue"></f7-preloader></f7-col></f7-block>
+                </f7-block>
+              </f7-page>
+          </f7-tab>
+        -->
         </f7-tab>
       </f7-tabs>
     </f7-page>
@@ -417,17 +444,16 @@
 
   <!-- eventi Page Template -->
   <template id="page-eventi">
-    <f7-page>
+    <f7-page ptr class="eventi-page-ptr">
       <f7-navbar>
         <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
         <f7-nav-title>Eventi</f7-nav-title>
       </f7-navbar>
-      <f7-block strong id="eventi-container" class="text-align-center">
+        <f7-block strong id="eventi-container" class="text-align-center">
           <f7-block class="row" id="eventi-loader">
-          <f7-col>
-            <f7-preloader color="blue"></f7-preloader>
-          </f7-col>
-      </f7-block>
+          <f7-col><f7-preloader color="blue"></f7-preloader></f7-col>
+        </f7-block>
+      </div>
     </f7-page>
   </template>
     <!-- Dettaglio eventi Page Template -->
@@ -435,7 +461,6 @@
       <f7-page>
         <f7-navbar title="Dettaglio Eventi" back-link="Indietro"></f7-navbar>
         <div strong class="text-align-center" id="eventidetail-container">
-          <!-- <img src="img/logo_ance_blue.png" /> -->
           <f7-block class="row text-align-center" id="eventidetail-loader">
           <f7-col>
             <f7-preloader color="blue"></f7-preloader>
@@ -460,6 +485,44 @@
         <div strong class="text-align-center" id="agendadetail-container"></div>
       </f7-page>
   </template> -->
+  <!-- Page settings -->
+  <template id="page-settings">
+    <f7-page>
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/home/" reload-all page-name="home"><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Impostazioni</f7-nav-title>
+      </f7-navbar>
+        <form action="#" method="GET" class="form-ajax-submit-onchange">
+          <f7-list inline-labels no-hairlines-md>
+            <f7-list-item>
+              <span>Abilita notifiche</span>
+              <f7-toggle checked color="blue" name="n_enable" id="n_enable" value="on"></f7-toggle>
+            </f7-list-item>
+            <f7-list-item title="Frequenza notifiche" id="n_frequency" smart-select :smart-select-params="{openIn: 'sheet', closeOnSelect: true, sheetCloseLinkText: 'Fatto'}">
+              <select name="n_frequency">
+                <option value="Ogni ora">Ogni ora</option>
+                <option value="Ogni 4 ore">Ogni 4 ore</option>
+                <option value="Una volta al giorno">Una volta al giorno</option>
+              </select>
+            </f7-list-item>
+            <!-- <f7-list-item>
+              <span>Abilita vibrazione per notifiche</span>
+              <f7-toggle checked color="blue" name="n_vibrate" id="n_vibrate" value="on"></f7-toggle>
+            </f7-list-item> -->
+            <!-- <f7-list-item title="Colore led notifica" id="n_color" smart-select :smart-select-params="{openIn: 'sheet', closeOnSelect: true, sheetCloseLinkText: 'Fatto'}">
+              <select name="n_color">
+                <option value="Blu">Blu</option>
+                <option value="Bianco">Bianco</option>
+                <option value="Rosso">Rosso</option>
+                <option value="Verde">Verde</option>
+              </select>
+            </f7-list-item> -->
+          </f7-list>
+        </form>
+    </f7-page>
+  </template>
+
+  <template id="page-settingsdata"><f7-page></f7-page></template>
   <!-- Page Not Found Template -->
   <template id="page-not-found">
     <f7-page>
@@ -482,6 +545,8 @@
   <script src="libs/framework7-vue/framework7-vue.min.js"></script>
   <!-- Your custom app scripts -->
   <script src="js/app.js"></script>
+  <script src="js/notification.js"></script>
+  <script src="js/filesystem.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/statics.js"></script>
   <script src='js/eventi.js'></script>
