@@ -46,8 +46,22 @@
 .ptr-loader-tabs{
   top: -40px!important;
 }
+div.page-content > div.block > a.link,
+div.page-content > div.block > a.link > div.card,
+div.page-content > div.list > a.link,
+div.page-content > div.list > a.link > div.card{
+  width: 100%;
+}
 /* SPECIFIC */
-#home-container, #newsdetail-container, .tabs-swipeable-wrap{
+#home-container,
+#newsdetail-container,
+.dossier-ptr.page,
+.analisi-ptr.page,
+.guide-ptr.page,
+.convenzioni-ptr.page,
+.prodotti-ptr.page,
+.posizioni-ptr.page,
+.tabs-swipeable-wrap{
   background-color: #f5f5f5;
 }
 #newsdetail-container{

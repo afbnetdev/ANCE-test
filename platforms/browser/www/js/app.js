@@ -1,6 +1,5 @@
 // Init F7 Vue Plugin
 Framework7.use(Framework7Vue);
-
 // Init Page Components
 Vue.component('page-about', {
   template: '#page-about'
@@ -376,6 +375,8 @@ new Vue({
 //   console.log(data);
 // });
 document.addEventListener('deviceready', function () {
+  alert(cordova.plugins.notification.local.launchDetails);
+
   //get app settings and set them to session
   //if nothing has been written before I get the default settings
   getPersistentFile(fileSettings, function(data){

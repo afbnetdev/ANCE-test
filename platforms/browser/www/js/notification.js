@@ -70,6 +70,7 @@ function setNotificationEngine(news,read){
     console.log('key: '+ key + ' => ' + notifications[key].IdContentuno);
   }*/
   var defNote = [];
+  var readNote = [];
   // var threeHours = [8,13,18];
   var currentdate = new Date();
   var curYear = currentdate.getFullYear();
@@ -97,6 +98,7 @@ function setNotificationEngine(news,read){
       //   breakLoop = 1;
       //   break;
     }
+    readNote[i] = notifications[k].IdContentuno;
     defNote[i] = {
       id: notifications[k].IdContentuno,
       title: notifications[k].Titoletto,
@@ -109,9 +111,9 @@ function setNotificationEngine(news,read){
     }
     //trigger: { in: 1, unit: 'hour' }
   }
-
-  console.log(defNote);
-  console.log(currentdate.getFullYear());
+  console.log(readNote);
+  //console.log(defNote);
+  //console.log(currentdate.getFullYear());
   cordova.plugins.notification.local.hasPermission(function (granted) {
     // console.log(notifications);
     // switch(color){
