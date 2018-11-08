@@ -52,6 +52,11 @@ div.page-content > div.list > a.link,
 div.page-content > div.list > a.link > div.card{
   width: 100%;
 }
+
+.demo-card-header-pic .card-header-pic{
+  background-repeat: no-repeat!important;
+  background-size: 100%!important;
+}
 /* SPECIFIC */
 #home-container,
 #newsdetail-container,
