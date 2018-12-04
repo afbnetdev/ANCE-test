@@ -35,6 +35,93 @@ function newsBadge(data, url){
   }
   return item;
 }
+function telpressBadgeHomeOnly(data){
+  // console.log(Date.now());
+  var day = (data.Date) ? data.Date.substring(8,10) : '00';
+  var month = (data.Date) ? getMonths(data.Date.substring(5,7),1) : '00';
+  var year = (data.Date) ? data.Date.substring(0,4) : '0000';
+  var compleDate = day+' '+month+' '+year;
+  var item = '';
+
+  // item += '<a href="'+data.Link+'" class="link external" target="_system">';
+  // item += '<div class="card demo-card-header-pic">';
+  //
+  // item += '<div class="card-footer"><span class="text-align-right">'+data.Source+'</span></div>';
+  // item += '<div class="card-header text-align-left"><strong>'+data.Title+'</strong></div>';
+  //
+  // item += '<div class="card-header">';
+  // item += '<p class="txt-black">'+data.Description+'</p>';
+  // item += '</div>';
+  //
+  // item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
+  // item += '</div>';
+  // item += '</a>';
+  item += '<a href="'+data.Link+'"><div>'+data.Description+'</div></a>'
+  return item;
+}
+function newsBadgeHomeOnly(data, url){
+  // console.log(Date.now());
+  var day = (data.DataDocumento) ? data.DataDocumento.substring(8,10) : '00';
+  var month = (data.DataDocumento) ? getMonths(data.DataDocumento.substring(5,7),1) : '00';
+  var year = (data.DataDocumento) ? data.DataDocumento.substring(0,4) : '0000';
+  var compleDate = day+' '+month+' '+year;
+  var newsTitle = data.TitoloAnteprima;
+  var newsBody = (data.Abstract && data.Abstract!='') ? data.Abstract.replace(/<(.|\n)*?>/g, '') : '';
+  var classContent = (data.LinkImgAnteprima && data.LinkImgAnteprima !="") ? 'ance-card-left-content' : 'ance-card-left-content-full';
+  var bodyWidth = $$('body').width();
+  var maxchars = 0;
+  if(bodyWidth < 415){
+    maxchars = 100;
+  }
+  else{
+    maxchars = 220;
+  }
+  var item = '';
+  //calculate text to be left considering title and maxchars (depending from screen size)
+  var titleLen = newsTitle.length;
+  var bodyLen = newsBody.length;
+  if(bodyLen > 0){
+    newsBody = newsBody.substring(0,maxchars-titleLen) + (bodyLen > (maxchars-titleLen) ? '...' : '');
+  }
+  // if(data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!=""){
+  //   item += '<a href="'+data.LinkEsternoAnteprima+'" class="link external ance-link" target="_system">';
+  // }
+  else if(url!=""){
+    item += '<a href="'+url+'" class="link ance-link">';
+  }
+  item += '<div class="card ance-card">'; //opening card
+
+  item += '<div class="card-footer ance-footer-head">';
+  if(data.Titoletto && data.Titoletto!=''){
+    item += '<div class="text-align-center ance-card-titoletto">'+data.Titoletto+'</div>';
+  }
+  if(data.DataDocumento && data.DataDocumento != ''){
+    item += '<div class="ance-card-date text-align-left">'+ (compleDate != '00 00 0000' ? compleDate : '' ) + '</div>';
+  }
+  item += '</div>';
+
+  item += '<div class="card-content card-content-padding txt-black text-align-justify">';
+  item += '<div class="'+classContent+'">';
+  item += '<div class="ance-card-title">'+newsTitle+'</div>';
+  if(newsBody!=''){
+    item += '<div class="ance-card-body"><p class="txt-black">'+newsBody+'</p></div>';
+  }
+  item += '</div>';
+  if(data.LinkImgAnteprima && data.LinkImgAnteprima !=""){
+    item += '<div class="ance-card-right-content">';
+    item += '<div style="background-image:url('+data.LinkImgAnteprima.replace(/\\/gi,"/")+')" class="ance-image-preview"></div>';
+    item += '</div>';
+  }
+  item += '</div>';
+
+  item += '</div>'; //closing card
+
+  // if((data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!="") || url!=""){
+  //   item += '</a>';
+  // }
+  item += '<div class="ance-reset"></div>'
+  return item;
+}
 function newsDetail(data,guideID){
   // console.log(guideID);
   var newsItem = '';

@@ -31,6 +31,9 @@ Vue.component('page-eventi', {
 Vue.component('page-eventidetail', {
   template: '#page-eventidetail'
 });
+Vue.component('page-newsstream', {
+  template: '#page-newsstream'
+});
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
 });
@@ -82,15 +85,15 @@ new Vue({
         on: {
           pageInit: function (e,page){
             // console.log(e);
-            getNews(e,page);
-            var ptrhome = e.app.ptr.get(".home-page-ptr > .ptr-content");
-            // console.log(ptrhome);
-            if(ptrhome){
-              ptrhome.on('refresh', function (e) {
-                getNews(e, page);
-                ptrhome.done();
-              });
-            }
+            getNewsHome(e,page);
+            // var ptrhome = e.app.ptr.get(".home-page-ptr > .ptr-content");
+            // // console.log(ptrhome);
+            // if(ptrhome){
+            //   ptrhome.on('refresh', function (e) {
+            //     getNewsHome(e, page);
+            //     ptrhome.done();
+            //   });
+            // }
           },
           pageAfterIn: function (e,page){
           },
@@ -109,6 +112,23 @@ new Vue({
           {
             path: '/home/',
             component: 'page-home',
+          },
+          {
+            path: '/newsstream/',
+            component: 'page-newsstream',
+            on: {
+              pageAfterIn: function(e,page){
+                getNews(e,page);
+                var ptrnewsstream = page.app.ptr.get(".newsstream-page-ptr .ptr-content");
+                // console.log(ptrhome);
+                if(ptrnewsstream){
+                  ptrnewsstream.on('refresh', function (e) {
+                    getNews(e, page);
+                    ptrnewsstream.done();
+                  });
+                }
+              },
+            },
           },
           {
             path: '/settings/',
@@ -212,10 +232,11 @@ new Vue({
             }
           },
           {
-            path: '/per-le-imprese/',
+            path: '/per-le-imprese/tabid/:tabid',
             component: 'page-per-le-imprese',
             on: {
               pageAfterIn: function (e, page) {
+                var tabID = page.route.params.tabid;
                 getGuide(e,page);
                 getConvenzioni(e,page);
                 getProdotti(e,page);
@@ -240,6 +261,7 @@ new Vue({
                     ptr3.done();
                   });
                 }
+                page.app.tab.show('#'+tabID);
               },
             }
           },
@@ -295,10 +317,11 @@ new Vue({
             }
           },
           {
-            path: '/media/',
+            path: '/media/tabid/:tabid',
             component: 'page-media',
             on: {
               pageAfterIn: function openRassegna (e, page) {
+                var tabID = page.route.params.tabid;
                 getRassegna(e,page);
                 getDossierList(e,page);
                 var ptrmedia = page.app.ptr.get(".dossier-ptr .ptr-content");
@@ -308,6 +331,7 @@ new Vue({
                     ptrmedia.done();
                   });
                 }
+                page.app.tab.show('#'+tabID);
               },
             }
           },
