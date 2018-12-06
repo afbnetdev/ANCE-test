@@ -37,6 +37,9 @@ Vue.component('page-newsstream', {
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
 });
+Vue.component('page-homepagenewsdetail', {
+  template: '#page-homepagenewsdetail'
+});
 Vue.component('page-per-le-imprese', {
   template: '#page-imprese'
 });
@@ -183,6 +186,16 @@ new Vue({
               pageAfterIn: function openAbout (e, page) {
                 var newsID = page.route.params.newsId;
                 getNewsDetail(e,page,newsID);
+              },
+            }
+          },
+          {
+            path: '/homepagenewsdetail/newsid/:newsId',
+            component: 'page-homepagenewsdetail',
+            on: {
+              pageAfterIn: function openAbout (e, page) {
+                var newsID = page.route.params.newsId;
+                getHomepageNewsDetail(e,page,newsID);
               },
             }
           },

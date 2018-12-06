@@ -2,7 +2,7 @@ function getNewsHome(e,page){
   Framework7.request.json(endPointUrl+'/Notizie/GetContenutiHome', {}, function (data) {
     var listitems="";
     var newsitems="";
-    var url = '/newsdetail/newsid/';
+    var url = '/homepagenewsdetail/newsid/';
     var loopCtrl = false;
     for(i=0;i<data.length;i++){
       if(data[i].IdTipoContentuno != 9){
@@ -25,7 +25,8 @@ function getNews(e,page){
     var listitems="";
     var url = '/newsdetail/newsid/';
     for(i=0;i<data.length;i++){
-      listitems += newsBadge(data[i], url+i);
+      // listitems += newsBadge(data[i], url+i);
+      listitems += newsBadgeHomeOnly(data[i], url+i);
     }
     $$('#newsstream-loader').remove();
     $$('#newsstream-container').html(listitems);
@@ -36,6 +37,13 @@ function getNewsDetail(e,page,nid){
     newsItem = newsDetail(data,nid);
     $$('#newsdetail-loader').remove();
     $$('#newsdetail-container').html(newsItem);
+  });
+}
+function getHomepageNewsDetail(e,page,nid){
+  Framework7.request.json(endPointUrl+'/Notizie/GetContenutiHome', {}, function (data) {
+    newsItem = newsDetail(data,nid);
+    $$('#homepage-newsdetail-loader').remove();
+    $$('#homepage-newsdetail-container').html(newsItem);
   });
 }
 function getFirstPage(){

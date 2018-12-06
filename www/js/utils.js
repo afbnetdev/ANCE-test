@@ -42,53 +42,44 @@ function telpressBadgeHomeOnly(data){
   var year = (data.Date) ? data.Date.substring(0,4) : '0000';
   var compleDate = day+' '+month+' '+year;
   var item = '';
-
-  // item += '<a href="'+data.Link+'" class="link external" target="_system">';
-  // item += '<div class="card demo-card-header-pic">';
-  //
-  // item += '<div class="card-footer"><span class="text-align-right">'+data.Source+'</span></div>';
-  // item += '<div class="card-header text-align-left"><strong>'+data.Title+'</strong></div>';
-  //
-  // item += '<div class="card-header">';
-  // item += '<p class="txt-black">'+data.Description+'</p>';
-  // item += '</div>';
-  //
-  // item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
-  // item += '</div>';
-  // item += '</a>';
-  //item += '<a class="link external" href="'+data.Link.replace(/\\/gi,"/").replace('http:/','http://')+'"><div>'+data.Description+'</div></a>';
   item += '<div class="item-content">'+data.Description.replace(/\\/gi,"/").replace('http:/','http://').replace('<a ','<a class="link external" ').replace('_blank','_system')+'</div>';
   return item;
 }
-function newsBadgeHomeOnly(data, url){
+function newsBadgeHomeOnly(data, url, textype){
   // console.log(Date.now());
   var day = (data.DataDocumento) ? data.DataDocumento.substring(8,10) : '00';
   var month = (data.DataDocumento) ? getMonths(data.DataDocumento.substring(5,7),1) : '00';
   var year = (data.DataDocumento) ? data.DataDocumento.substring(0,4) : '0000';
   var compleDate = day+' '+month+' '+year;
-  var newsTitle = data.TitoloAnteprima;
+  var newsTitle = (data.TitoloAnteprima) ? data.TitoloAnteprima : '';
   var newsBody = (data.Abstract && data.Abstract!='') ? data.Abstract.replace(/<(.|\n)*?>/g, '') : '';
   var classContent = (data.LinkImgAnteprima && data.LinkImgAnteprima !="") ? 'ance-card-left-content' : 'ance-card-left-content-full';
   var bodyWidth = $$('body').width();
-  var maxchars = 0;
-  if(bodyWidth < 415){
-    maxchars = 100;
-  }
-  else{
-    maxchars = 220;
-  }
   var item = '';
-  //calculate text to be left considering title and maxchars (depending from screen size)
-  var titleLen = newsTitle.length;
-  var bodyLen = newsBody.length;
-  if(bodyLen > 0){
-    newsBody = newsBody.substring(0,maxchars-titleLen) + (bodyLen > (maxchars-titleLen) ? '...' : '');
+
+  if(textype!='fulltext'){
+    var maxchars = 0;
+    if(bodyWidth < 415){
+      maxchars = 100;
+    }
+    else{
+      maxchars = 220;
+    }
+    //calculate text to be left considering title and maxchars (depending from screen size)
+    var titleLen = newsTitle.length;
+    var bodyLen = newsBody.length;
+    if(bodyLen > 0){
+      newsBody = newsBody.substring(0,maxchars-titleLen) + (bodyLen > (maxchars-titleLen) ? '...' : '');
+    }
   }
-  // if(data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!=""){
-  //   item += '<a href="'+data.LinkEsternoAnteprima+'" class="link external ance-link" target="_system">';
-  // }
+  if(data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!=""){
+    item += '<a href="'+data.LinkEsternoAnteprima+'" class="link external ance-link" target="_system">';
+  }
   else if(url!=""){
     item += '<a href="'+url+'" class="link ance-link">';
+  }
+  else{
+    item += '<a class="link ance-link">'
   }
   item += '<div class="card ance-card">'; //opening card
 
@@ -118,7 +109,7 @@ function newsBadgeHomeOnly(data, url){
   item += '</div>'; //closing card
 
   // if((data.LinkEsternoAnteprima && data.LinkEsternoAnteprima!="") || url!=""){
-  //   item += '</a>';
+    item += '</a>';
   // }
   item += '<div class="ance-reset"></div>'
   return item;
