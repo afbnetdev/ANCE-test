@@ -56,7 +56,8 @@ function telpressBadgeHomeOnly(data){
   // item += '<div class="card-footer">'+ (compleDate != '00 00 0000' ? '<span class="text-align-left">'+compleDate+'</span>' : '' ) + '</div>';
   // item += '</div>';
   // item += '</a>';
-  item += '<a href="'+data.Link+'"><div>'+data.Description+'</div></a>'
+  // item += '<a href="'+data.Link.replace(/\\/gi,"/")+'" class="link external"><div>'+data.Description+'</div></a>'
+  item += '<a href="'+data.Link.replace(/\\/gi,"/").replace('http:/','http://')+'" class="link external"><div>'+data.Description+'</div></a>'
   return item;
 }
 function newsBadgeHomeOnly(data, url){

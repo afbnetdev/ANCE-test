@@ -61,6 +61,9 @@ Vue.component('page-settings', {
 Vue.component('page-settingsdata', {
   template: '#page-settingsdata'
 });
+Vue.component('page-primapagina', {
+  template: '#page-primapagina'
+});
 Vue.component('page-home', {
   template: '#main-view'
 });
@@ -382,6 +385,16 @@ new Vue({
                 getEventiDetail (e, page, eventId);
               }
             },
+          },
+          {
+            path: '/primapagina/',
+            component: 'page-primapagina',
+            on: {
+              pageAfterIn: function openAbout (e, page) {
+                var newsID = page.route.params.newsId;
+                getFirstPage(e,page,newsID);
+              },
+            }
           },
           {
             path: '(.*)',

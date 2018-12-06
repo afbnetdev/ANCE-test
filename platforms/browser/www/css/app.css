@@ -12,6 +12,40 @@
   width: 25% !important;
   width: calc((100% - 1px*3) / 4) !important;
 }
+.ance-news-button{
+  width: 84%;
+  margin: 20px 3%;
+  line-height: 50px;
+  padding: 1% 5%;
+  width: 84%;
+  font-size: 20px;
+  font-weight: bold;
+  height: 50px;
+}
+.ance-home-primapagina{
+  background:url("/img/primapagina.jpg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+.ance-home-rassegna{
+  background: url(/img/rassegnastampa.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}
+.ance-home-newsbox{
+  background-color: #fa9209;
+}
+.pp-inner{
+  background-color: rgba(255,255,255,0.7);
+  /* padding: 1%; */
+  margin-left: -21px;
+  padding: 2px 6px 2px 25px;
+}
+div#home-loader{
+  height:20000px;
+}
 #home-container{
   margin: 10px 0 !important;
 }
@@ -79,7 +113,7 @@
 #home-telpress-container,
 #home-list-container,
 #home-news-container{
-  padding:0px 16px!important;
+  /* padding:0px 16px!important; */
   margin: 0px 0 !important;
 }
 /* COMMON */
@@ -103,6 +137,9 @@
 }
 .txt-black{
   color:#000000;
+}
+.txt-blue{
+  color:#003e7e;
 }
 .ptr-loader-tabs{
   top: -40px!important;
