@@ -23,13 +23,13 @@
   height: 50px;
 }
 .ance-home-primapagina{
-  background:url("/img/primapagina.jpg");
+  background:url("img/primapagina.jpg");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
 }
 .ance-home-rassegna{
-  background: url(/img/rassegnastampa.jpg);
+  background: url("img/rassegnastampa.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% 100%;
