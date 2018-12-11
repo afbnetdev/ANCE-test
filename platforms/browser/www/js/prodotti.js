@@ -3,7 +3,8 @@ function getGuide(e,page){
     var listitems = '';
     var url = '/guidedetail/guideid/';
     for(i=0;i<data.length;i++){
-      listitems += newsBadge(data[i], url+i);
+      // listitems += newsBadge(data[i], url+i);
+      listitems += newsBadgeHomeOnly(data[i], url+i, 'fulltext');
     }
     $$('#guide-loader').remove();
     $$('#prodotti-guide').html(listitems);
@@ -31,7 +32,8 @@ function getProdotti(e,page){
   Framework7.request.json(endPointUrl+'/PerLeImprese/Get/Prodotti', {}, function (data) {
     var listitems = '';
     for(i=0;i<data.length;i++){
-      listitems += newsBadge(data[i], '');
+      // listitems += newsBadge(data[i], '');
+      listitems += newsBadgeHomeOnly(data[i], '', 'fulltext');
     }
     $$('#prodotti-loader').remove();
     $$('#prodotti-prodotti').html(listitems);

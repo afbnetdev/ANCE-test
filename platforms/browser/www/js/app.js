@@ -31,8 +31,14 @@ Vue.component('page-eventi', {
 Vue.component('page-eventidetail', {
   template: '#page-eventidetail'
 });
+Vue.component('page-newsstream', {
+  template: '#page-newsstream'
+});
 Vue.component('page-newsdetail', {
   template: '#page-newsdetail'
+});
+Vue.component('page-homepagenewsdetail', {
+  template: '#page-homepagenewsdetail'
 });
 Vue.component('page-per-le-imprese', {
   template: '#page-imprese'
@@ -58,14 +64,14 @@ Vue.component('page-settings', {
 Vue.component('page-settingsdata', {
   template: '#page-settingsdata'
 });
+Vue.component('page-primapagina', {
+  template: '#page-primapagina'
+});
 Vue.component('page-home', {
   template: '#main-view'
 });
 
 var $$ = Dom7;
-var endPointUrl = 'http://serviceapp.ance.it:26031/ServiceAppAnce.svc';
-var fileSettings = 'app-settings.txt';
-var fileNewsQueue = 'app-news.txt';
 
 // Init App
 new Vue({
@@ -82,15 +88,15 @@ new Vue({
         on: {
           pageInit: function (e,page){
             // console.log(e);
-            getNews(e,page);
-            var ptrhome = e.app.ptr.get(".home-page-ptr > .ptr-content");
-            // console.log(ptrhome);
-            if(ptrhome){
-              ptrhome.on('refresh', function (e) {
-                getNews(e, page);
-                ptrhome.done();
-              });
-            }
+            getNewsHome(e,page);
+            // var ptrhome = e.app.ptr.get(".home-page-ptr > .ptr-content");
+            // // console.log(ptrhome);
+            // if(ptrhome){
+            //   ptrhome.on('refresh', function (e) {
+            //     getNewsHome(e, page);
+            //     ptrhome.done();
+            //   });
+            // }
           },
           pageAfterIn: function (e,page){
           },
@@ -109,6 +115,23 @@ new Vue({
           {
             path: '/home/',
             component: 'page-home',
+          },
+          {
+            path: '/newsstream/',
+            component: 'page-newsstream',
+            on: {
+              pageAfterIn: function(e,page){
+                getNews(e,page);
+                var ptrnewsstream = page.app.ptr.get(".newsstream-page-ptr .ptr-content");
+                // console.log(ptrhome);
+                if(ptrnewsstream){
+                  ptrnewsstream.on('refresh', function (e) {
+                    getNews(e, page);
+                    ptrnewsstream.done();
+                  });
+                }
+              },
+            },
           },
           {
             path: '/settings/',
@@ -164,6 +187,16 @@ new Vue({
             }
           },
           {
+            path: '/homepagenewsdetail/newsid/:newsId',
+            component: 'page-homepagenewsdetail',
+            on: {
+              pageAfterIn: function openAbout (e, page) {
+                var newsID = page.route.params.newsId;
+                getHomepageNewsDetail(e,page,newsID);
+              },
+            }
+          },
+          {
             path: '/about/',
             component: 'page-about',
             on: {
@@ -212,10 +245,11 @@ new Vue({
             }
           },
           {
-            path: '/per-le-imprese/',
+            path: '/per-le-imprese/tabid/:tabid',
             component: 'page-per-le-imprese',
             on: {
               pageAfterIn: function (e, page) {
+                var tabID = page.route.params.tabid;
                 getGuide(e,page);
                 getConvenzioni(e,page);
                 getProdotti(e,page);
@@ -240,6 +274,7 @@ new Vue({
                     ptr3.done();
                   });
                 }
+                page.app.tab.show('#'+tabID);
               },
             }
           },
@@ -295,10 +330,11 @@ new Vue({
             }
           },
           {
-            path: '/media/',
+            path: '/media/tabid/:tabid',
             component: 'page-media',
             on: {
               pageAfterIn: function openRassegna (e, page) {
+                var tabID = page.route.params.tabid;
                 getRassegna(e,page);
                 getDossierList(e,page);
                 var ptrmedia = page.app.ptr.get(".dossier-ptr .ptr-content");
@@ -308,6 +344,7 @@ new Vue({
                     ptrmedia.done();
                   });
                 }
+                page.app.tab.show('#'+tabID);
               },
             }
           },
@@ -358,6 +395,16 @@ new Vue({
                 getEventiDetail (e, page, eventId);
               }
             },
+          },
+          {
+            path: '/primapagina/',
+            component: 'page-primapagina',
+            on: {
+              pageAfterIn: function openAbout (e, page) {
+                var newsID = page.route.params.newsId;
+                getFirstPage(e,page,newsID);
+              },
+            }
           },
           {
             path: '(.*)',

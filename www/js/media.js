@@ -34,7 +34,8 @@ function getDossierList(e, page){
     // listitems += Date.now();
     var url = '/dossierdetail/dossierid/';
     for(i=0;i<data.length;i++){
-      listitems += newsBadge(data[i], url+i);
+      // listitems += newsBadge(data[i], url+i);
+      listitems += newsBadgeHomeOnly(data[i], url+i);
     }
     $$('#dossier-loader').remove();
     $$('#media-dossier').html(listitems);

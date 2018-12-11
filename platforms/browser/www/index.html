@@ -34,25 +34,42 @@
         <f7-view id="left-panel-view">
           <f7-page>
             <f7-navbar class="bg-color-blue"><img src="img/Logo-dark.png" class="logo-slide"/></f7-navbar>
-            <f7-block class="txt-grey">
+            <!-- <f7-block class="txt-grey">
               Sistema ANCE
-            </f7-block>
+            </f7-block> -->
             <f7-list>
-              <f7-list-item link="/about/" title="Chi siamo" view="#main-view" panel-close>
-                <f7-icon slot="media" icon="f7-icons">home_fill</f7-icon>
+              <f7-list-item link="/newsstream/" title="Notizie - prova" view="#main-view" panel-close></f7-list-item>
+              <f7-list-item link="/eventi/" title="Eventi" view="#main-view" panel-close>
+                <f7-icon slot="media" icon="f7-icons">calendar_fill</f7-icon>
               </f7-list-item>
-              <f7-list-item link="/storia/" title="Storia" view="#main-view" panel-close>
+
+              <f7-list-item title="Per le Imprese" view="#main-view" panel-close>
+                <f7-icon slot="media" icon="f7-icons">graph_square_fill</f7-icon>
+              </f7-list-item>
+              <li/><ul class="ance-submenu-list">
+                <f7-list-item link="/per-le-imprese/tabid/tabprodotti-1" title="Guide" view="#main-view" panel-close></f7-list-item>
+                <f7-list-item link="/per-le-imprese/tabid/tabprodotti-2" title="Convenzioni" view="#main-view" panel-close></f7-list-item>
+                <f7-list-item link="/per-le-imprese/tabid/tabprodotti-3" title="Prodotti" view="#main-view" panel-close></f7-list-item>
+              </ul></li>
+
+              <f7-list-item title="Media" view="#main-view" panel-close>
                 <f7-icon slot="media" icon="f7-icons">at_fill</f7-icon>
               </f7-list-item>
-              <f7-list-item link="/statuto/" title="Lo statuto" view="#main-view" panel-close>
-                <f7-icon slot="media" icon="f7-icons">star_fill</f7-icon>
+              <li/><ul class="ance-submenu-list">
+                <f7-list-item link="/media/tabid/tabmedia-1" title="Rassegne" view="#main-view" panel-close></f7-list-item>
+                <f7-list-item link="/media/tabid/tabmedia-2" title="Dossier" view="#main-view" panel-close></f7-list-item>
+              </ul></li>
+
+              <f7-list-item title="Chi siamo" view="#main-view" panel-close>
+                <f7-icon slot="media" icon="f7-icons">persons</f7-icon>
               </f7-list-item>
-              <f7-list-item link="/vertici/" title="I vertici" view="#main-view" panel-close>
-                <f7-icon slot="media" icon="f7-icons">chat_fill</f7-icon>
-              </f7-list-item>
-              <f7-list-item link="/organi/" title="Gli organi ANCE" view="#main-view" panel-close>
-                <f7-icon slot="media" icon="f7-icons">briefcase_fill</f7-icon>
-              </f7-list-item>
+              <li><ul class="ance-submenu-list">
+                <f7-list-item link="/about/" title="L'ANCE" view="#main-view" panel-close></f7-list-item>
+                <f7-list-item link="/storia/" title="La storia" view="#main-view" panel-close></f7-list-item>
+                <f7-list-item link="/statuto/" title="Lo statuto" view="#main-view" panel-close></f7-list-item>
+                <f7-list-item link="/vertici/" title="I vertici" view="#main-view" panel-close></f7-list-item>
+                <f7-list-item link="/organi/" title="Gli organi ANCE" view="#main-view" panel-close></f7-list-item>
+              </ul></li>
             </f7-list>
             <f7-list>
               <f7-list-item link="/settings/" title="Impostazioni" view="#main-view" panel-close>
@@ -65,36 +82,26 @@
 
       <!-- Main View -->
       <f7-view id="main-view" main>
-        <f7-page ptr class="home-page-ptr">
+        <!-- <f7-page ptr class="home-page-ptr"> -->
+        <f7-page class="home-page-ptr">
           <f7-navbar class="color-white">
             <f7-nav-left>
               <f7-link icon-if-ios="f7:menu" icon-if-md="material:menu" panel-open="left" icon-color="blue"></f7-link>
             </f7-nav-left>
             <f7-nav-title><img src="img/Logo.png" class="logo-head" title="ANCE - Associazione Nazionale Costruttori Edili"></f7-nav-title>
           </f7-navbar>
-          <f7-block class="ance-submenu">
-            <f7-row>
-              <f7-col width=25 class="text-align-center txt-bold">
-                <f7-link href="/eventi/" :animate="false" :ignore-cache="true">Eventi</f7-link>
-              </f7-col>
-              <f7-col width=25 class="text-align-center txt-bold">
-                <f7-link href="/per-le-imprese/" :animate="false" :ignore-cache="true">Per le imprese</f7-link>
-              </f7-col>
-              <f7-col width=25 class="text-align-center txt-bold">
-                <f7-link href="/settore/" :animate="false" :ignore-cache="true">Per il settore</f7-link>
-              </f7-col>
-              <f7-col width=25 class="text-align-center txt-bold">
-                <f7-link href="/media/" :animate="false" :ignore-cache="true">Media</f7-link>
-              </f7-col>
-            </f7-row>
-          </f7-block>
           <div class="ptr-content-homepage">
-            <f7-block strong class="text-align-center" id="home-container">
-              <f7-block class="row text-align-center" id="home-loader">
+            <f7-block class="row text-align-center" id="home-loader">
               <f7-col>
                 <f7-preloader color="blue"></f7-preloader>
               </f7-col>
             </f7-block>
+            <a href="/primapagina/"><div class="ance-news-button ance-home-primapagina txt-blue" style="background-image: url(img/primapagina.jpg)"><span class="pp-inner">PRIMA PAGINA</span></div></a>
+            <a href="/media/tabid/tabmedia-1/"><div class="ance-news-button ance-home-rassegna txt-blue" style="background-image: url(img/rassegnastampa.jpg)"><span class="pp-inner">RASSEGNA STAMPA</span></div></a>
+            <!-- <div class="text-align-center" id="home-telpress-container"></div> -->
+            <f7-block strong class="text-align-center" id="home-list-container"></f7-block>
+            <div class="ance-news-button ance-home-newsbox txt-blue"></div>
+            <!-- </f7-block> -->
           </div>
         </f7-page>
       </f7-view>
@@ -115,6 +122,60 @@
 
     </f7-app>
   </div>
+
+
+  <!-- News Stream Page Template -->
+  <template id="page-newsstream">
+    <f7-page ptr class="newsstream-page-ptr">
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Notizie</f7-nav-title>
+      </f7-navbar>
+      <div class="ptr-content-newsstream">
+        <f7-block strong class="text-align-center" id="newsstream-container">
+          <f7-block class="row text-align-center" id="newsstream-loader">
+          <f7-col>
+            <f7-preloader color="blue"></f7-preloader>
+          </f7-col>
+        </f7-block>
+      </div>
+    </f7-page>
+  </template>
+
+  <!-- Dettaglio Notizie Page Template -->
+  <template id="page-newsdetail">
+    <f7-page>
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/newsstream/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Dettaglio notizie</f7-nav-title>
+      </f7-navbar>
+      <div strong class="text-align-center" id="newsdetail-container">
+        <!-- <img src="img/logo_ance_blue.png" /> -->
+        <f7-block class="row text-align-center" id="newsdetail-loader">
+        <f7-col>
+          <f7-preloader color="blue"></f7-preloader>
+        </f7-col>
+      </div>
+    </f7-page>
+  </template>
+
+  <!-- Dettaglio Notizie Page Template -->
+  <template id="page-homepagenewsdetail">
+    <f7-page>
+      <f7-navbar>
+        <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
+        <f7-nav-title>Dettaglio notizie<f7-nav-title>
+      </f7-navbar>
+      <div strong class="text-align-center" id="homepage-newsdetail-container">
+        <!-- <img src="img/logo_ance_blue.png" /> -->
+        <f7-block class="row text-align-center" id="homepage-newsdetail-loader">
+          <f7-col>
+            <f7-preloader color="blue"></f7-preloader>
+          </f7-col>
+        </f7-block>
+      </div>
+    </f7-page>
+  </template>
 
   <!-- Chi Siamo Page Template -->
   <template id="page-about">
@@ -428,20 +489,6 @@
     </f7-page>
   </template>
 
-  <!-- Dettaglio Notizie Page Template -->
-  <template id="page-newsdetail">
-    <f7-page>
-      <f7-navbar title="Dettaglio" back-link="Indietro"></f7-navbar>
-      <div strong class="text-align-center" id="newsdetail-container">
-        <!-- <img src="img/logo_ance_blue.png" /> -->
-        <f7-block class="row text-align-center" id="newsdetail-loader">
-        <f7-col>
-          <f7-preloader color="blue"></f7-preloader>
-        </f7-col>
-      </div>
-    </f7-page>
-  </template>
-
   <!-- eventi Page Template -->
   <template id="page-eventi">
     <f7-page ptr class="eventi-page-ptr">
@@ -462,6 +509,24 @@
         <f7-navbar title="Dettaglio Eventi" back-link="Indietro"></f7-navbar>
         <div strong class="text-align-center" id="eventidetail-container">
           <f7-block class="row text-align-center" id="eventidetail-loader">
+          <f7-col>
+            <f7-preloader color="blue"></f7-preloader>
+          </f7-col>
+        </div>
+      </f7-page>
+    </template>
+
+    <!-- Prima pagina Page Template -->
+    <template id="page-primapagina">
+      <f7-page>
+        <f7-navbar>
+          <f7-nav-left><f7-link href="/home/" force><i class="icon icon-back"></i></f7-link></f7-nav-left>
+          <f7-nav-title>Prima pagina</f7-nav-title>
+        </f7-navbar>
+        <div strong class="text-align-center">
+          <f7-list id="primapagina-container"></f7-list>
+          <!-- <img src="img/logo_ance_blue.png" /> -->
+          <f7-block class="row text-align-center" id="primapagina-loader">
           <f7-col>
             <f7-preloader color="blue"></f7-preloader>
           </f7-col>
@@ -544,6 +609,7 @@
   <!-- Framework7-Vue plugin -->
   <script src="libs/framework7-vue/framework7-vue.min.js"></script>
   <!-- Your custom app scripts -->
+  <script src="js/environment.js"></script>
   <script src="js/app.js"></script>
   <script src="js/notification.js"></script>
   <script src="js/filesystem.js"></script>
