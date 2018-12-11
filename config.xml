@@ -11,9 +11,6 @@
     <access origin="*" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
-    <feature name="StatusBar">
-        <param name="ios-package" onload="true" value="CDVStatusBar" />
-    </feature>
     <platform name="android">
         <icon density="ldpi" src="resources/android/icon/ldpi.png" />
         <icon density="mdpi" src="resources/android/icon/mdpi.png" />
@@ -53,8 +50,8 @@
     </platform>
     <preference name="android-build-tool" value="gradle" />
     <preference name="phonegap-version" value="cli-8.0.0" />
-    <plugin spec="https://github.com/dpa99c/cordova-android-support-gradle-release" source="git" >
-      <variable name="ANDROID_SUPPORT_VERSION" value="26.0.0"/>
+    <plugin source="git" spec="https://github.com/dpa99c/cordova-android-support-gradle-release">
+        <variable name="ANDROID_SUPPORT_VERSION" value="26.0.0" />
     </plugin>
     <plugin name="cordova-plugin-certificates" spec="0.6.4" />
     <plugin name="cordova-plugin-console" spec="1.0.7" />
