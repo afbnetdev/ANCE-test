@@ -22,6 +22,18 @@
                         }
                     ]
                 }
+            },
+            "*-Info.plist": {
+                "parents": {
+                    "NSCalendarsUsageDescription": [
+                        {
+                            "xml": "<string>This app may use your calendar in order to schedule events related to ANCE Activity only</string>",
+                            "count": 1,
+                            "mode": "merge",
+                            "id": "config.xml"
+                        }
+                    ]
+                }
             }
         }
     },
